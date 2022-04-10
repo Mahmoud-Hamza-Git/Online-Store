@@ -27,6 +27,7 @@ body{
   display: flex;
   position: fixed;
   top: 10px;
+  z-index: 1;
 }
 
 .wrapper .top_navbar .hamburger{
@@ -183,7 +184,4 @@ h1{
 img{
     width: 100%;
     height: 200px;
-}
-.copy-rights{
-
 }

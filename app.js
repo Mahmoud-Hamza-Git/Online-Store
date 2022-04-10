@@ -13,11 +13,24 @@ mongoose.connect("mongodb://localhost:27017/online-storeDB"); //connect local
 
 //home route
 app.get("/",function(req,res){
+    
     res.render("home");
 })
 
 app.get("/login",function(req,res){
     res.render("login");
+})
+
+app.get("/sign_in",function(req,res){
+    res.render("sign_in");
+})
+
+app.get("/sign_up",function(req,res){
+    res.render("sign_up");
+})
+
+app.get("/main",function(req,res){
+    res.render("main");
 })
 
 

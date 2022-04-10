@@ -1,6 +1,10 @@
 
 
 // Open the side bar 
+$(".hamburger").click(function(){
+    $(".wrapper").toggleClass("shrink");
+});
+
 function myFunction(x) {
     if (x.matches) { // If media query matches
         document.getElementById("sidebartoggle").style.display = "none";
