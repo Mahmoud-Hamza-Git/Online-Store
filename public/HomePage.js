@@ -1,50 +1,47 @@
 
 
 // Open the side bar 
-$(".hamburger").click(function(){
-    $(".wrapper").toggleClass("shrink");
-});
-
-function myFunction(x) {
-    if (x.matches) { // If media query matches
-        document.getElementById("sidebartoggle").style.display = "none";
-    } else {
-        document.getElementById("sidebartoggle").style.display = "block";
+// function myFunction(x) {
+//     if (x.matches) { // If media query matches
+//         document.getElementById("sidebartoggle").style.display = "none";
+//     } else {
+//         document.getElementById("sidebartoggle").style.display = "block";
         
-    }
-}
+//     }
+// }
       
-    var x = window.matchMedia("(max-width: 700px)")
-    myFunction(x) // Call listener function at run time
-    x.addListener(myFunction) // Attach listener function on state changes
+//     var x = window.matchMedia("(max-width: 700px)")
+//     myFunction(x) // Call listener function at run time
+//     x.addListener(myFunction) // Attach listener function on state changes
 
 
-function togglebar(){
-    document.getElementById("sidebartoggle").style.display = "block";
-}
+// function togglebar(){
+//     document.getElementById("sidebartoggle").style.display = "block";
+// }
     
  
 
 
-// Close the side Bar 
-function myFunction(y) {
-    if (x.matches) { // If media query matches
-        document.getElementById("btnclose").style.display = "block";
-    } else {
-        document.getElementById("btnclose").style.display = "none";
-    }
-}
+// // Close the side Bar 
+// function myFunction(y) {
+//     if (x.matches) { // If media query matches
+//         document.getElementById("btnclose").style.display = "block";
+//     } else {
+//         document.getElementById("btnclose").style.display = "none";
+//     }
+// }
       
-    var y = window.matchMedia("(max-width: 700px)")
-    myFunction(y) // Call listener function at run time
-    x.addListener(myFunction) // Attach listener function on state changes
+//     var y = window.matchMedia("(max-width: 700px)")
+//     myFunction(y) // Call listener function at run time
+//     x.addListener(myFunction) // Attach listener function on state changes
 
 
 function closeNav(){
     document.getElementById("sidebartoggle").style.display = "none";
 }
-    
-
+function togglebar(){
+    $("#sidebartoggle").css("display")
+}
 
 
 

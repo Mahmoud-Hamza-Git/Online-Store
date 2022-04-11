@@ -1,8 +1,8 @@
-@font-face {
+/* @font-face {
     font-family: Leckerli One;
     src: url(../Images/LeckerliOne-Regular.ttf);
- }
-@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Montserrat:wght@100;400;900&family=Ubuntu:ital,wght@0,300;0,400;1,700&display=swap');
+ } */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 :root {
     --header-height: 6rem;
@@ -14,7 +14,10 @@
     --normal-font-size: 1rem;
     --z-fixed: 100
 }
-
+* {
+    margin: 0px;
+    padding: 0px;
+}
 
   * {
     scrollbar-width: auto;
@@ -47,7 +50,7 @@ body {
     overflow-x: hidden;
 }
 
-/* .header {
+.header {
     width: 100%;
     position: fixed;
     top: 0;
@@ -59,8 +62,10 @@ body {
     background-color:#FBFBFB;
     z-index: var(--z-fixed);
     transition: .5s
-} */
-
+}
+#sidebartoggle{
+    display: none;
+}
 
 /* @media (max-width: 568px) {
     #sidebartoggle {
@@ -72,8 +77,8 @@ body {
     width: 300px;
     padding-top: 8%;
     padding-left: 20px;
-    /* position: fixed;
-    z-index: 1; */
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0px;
     text-shadow:#000 ;
@@ -227,10 +232,7 @@ margin-left: 50px;
     text-align: right;
 }
 .containersearch{
-    display: flex;
-    min-width: 100px;
-    width: 950px;
-    padding: 0 30px;
+    width: 1160px;
 }
 .searchinput:focus{
     background-color: #ededee;
@@ -238,17 +240,10 @@ margin-left: 50px;
     color: #000;
 }
 .searchbtn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius:0 50px 50px 0;
-    height: 100%;
-    padding-bottom:0 ;
 }
 .bi-search{
     font-size: 20px;
-    position: relative;
-    bottom: 5px;
 }
 .header .cartspan{
     font-weight: bold;
@@ -256,9 +251,10 @@ margin-left: 50px;
     color: #777;
     margin-bottom: 100px;
 }
-.bi-cart-plus{
-    font-size:25px;
+.header .bi-cart-plus{
+    font-size:20px;
 }
+
 /* @media screen and (min-width: 768px) {
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -375,7 +371,7 @@ footer .nav-item{
 
 .form-control{
     border:     #0D1117;
-    height: 100%;
+    padding: 25px;
     border-radius: 10px;
     color: #222830;
     background-color:#fff;
@@ -391,8 +387,8 @@ footer .nav-item{
 
 }
 .form-control:focus{
-    border: #0D1117;
-    border: #fff solid;
+    /* border: #0D1117; */
+    /* border: #fff solid; */
     color:#222830;
     background-color: #fff;
 
@@ -406,15 +402,17 @@ footer .nav-item{
     background-color: #FBFBFB;
     border: 2px solid #646A70;
     color: #000;
-    border-radius: 50px 0 0 50px;
+    border-radius: 50px;
 }
 .searchinput:focus{
     background-color: #FBFBFB;
-    border: 2px solid #5d5f61;
+    /* border: 2px solid #5d5f61; */
     color:#000;
 }
 /* End of Light Mode  */
 /* DARK MODE  */
+
+
 
 body.dark{
 	color: #646A70 !important;
@@ -506,7 +504,7 @@ body.dark  .form-select:focus{
 }
 
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .container{
         margin-top: 20px;
     }
@@ -517,6 +515,17 @@ body.dark  .form-select:focus{
         margin-left: -60px;
     }
     .navbar-brand ,.mingo,.newspaper{
-        margin-left: -10px;
+        margin-left: -60px;
     }
+} */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

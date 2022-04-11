@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Mingo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/MainCssFiles.css">
+    <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">    -->
+    <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
+</head>
+
+<body id="body-pd">
+    <!-- Side bar -->
+    <header class="header" id="header">
+        <div class="sidenav shadow p-3 mb-5 bg-body rounded " id="sidebartoggle">
+            <a href="javascript:void(0)" class="closebtn" id="btnclose" onclick="closeNav()">&times;</a>
+            <a class="navbar-brand ms-auto" href="EnterAddress.html"> Mingo</a>
+            <hr>
+            <h4>Catogery</h4>
+            <ul class="list-unstyled ps-0">
+
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center  " data-toggle="collapse"
+                        data-target="#home-collapse" aria-expanded="false">Men's Fasion</button>
+                    <div class="collapse" id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Cloths</h5>
+                            <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
+                            <li><a href="#" class="link-dark rounded">trousers</a></li>
+                            <li><a href="#" class="link-dark rounded">Sports Wear</a></li>
+                            <li><a href="#" class="link-dark rounded">underwear</a></li>
+                            <hr class="imghr">
+                            <h5>Accessories</h5>
+                            <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
+                            <li><a href="#" class="link-dark rounded">trousers</a></li>
+                            <li><a href="#" class="link-dark rounded">Sports Wear</a></li>
+                            <li><a href="#" class="link-dark rounded">underwear</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center  " data-toggle="collapse"
+                        data-target="#se-collapse" aria-expanded="false">Women's Fasion</button>
+                    <div class="collapse" id="se-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Cloths</h5>
+                            <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
+                            <li><a href="#" class="link-dark rounded">trousers</a></li>
+                            <li><a href="#" class="link-dark rounded">Sports Wear</a></li>
+                            <li><a href="#" class="link-dark rounded">underwear</a></li>
+                            <hr class="imghr">
+                            <h5>Accessories</h5>
+                            <li><a href="#" class="link-dark rounded">Watches</a></li>
+                            <li><a href="#" class="link-dark rounded">Glasses</a></li>
+                            <li><a href="#" class="link-dark rounded">Sports Shoes</a></li>
+                            <li><a href="#" class="link-dark rounded">Jellawry</a></li>
+                            <li><a href="#" class="link-dark rounded">Eyewaer</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded " data-toggle="collapse"
+                        data-target="#kidsFasion" aria-expanded="false">Kids Fasion</button>
+                    <div class="collapse" id="kidsFasion">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Cloths</h5>
+                            <li><a href="#" class="link-dark rounded">Boys Clothes</a></li>
+                            <li><a href="#" class="link-dark rounded">girls Clothes</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <hr class="imghr">
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded " data-toggle="collapse"
+                        data-target="#toys" aria-expanded="false">Toys & Gams</button>
+                    <div class="collapse" id="toys">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Baby Fasion</a></li>
+                            <li><a href="#" class="link-dark rounded">Action Fires</a></li>
+                            <li><a href="#" class="link-dark rounded">Construction Toys</a></li>
+                            <li><a href="#" class="link-dark rounded">Outdoor play</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#books" aria-expanded="false">Books</button>
+                    <div class="collapse " id="books">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>trend</h5>
+                            <li><a href="#" class="link-dark rounded">Student Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Kids Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Storys</a></li>
+                            <hr class="imghr">
+                            <h5>General</h5>
+                            <li><a href="#" class="link-dark rounded">Hostry Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Horror Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Romance Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Potery Books</a></li>
+                            <li><a href="#" class="link-dark rounded">Political thriller</a></li>
+                            <h5>Novel</h5>
+                            <li><a href="#" class="link-dark rounded">Horror</a></li>
+                            <li><a href="#" class="link-dark rounded">Crime</a></li>
+                            <li><a href="#" class="link-dark rounded">Fantasy</a></li>
+                            <li><a href="#" class="link-dark rounded">Hostrical </a></li>
+                            <li><a href="#" class="link-dark rounded">Clasic </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#mobiles" aria-expanded="false">Mobiles & Tablets & Accessories</button>
+                    <div class="collapse" id="mobiles">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Phons</h5>
+                            <li><a href="#" class="link-dark rounded">Iphone</a></li>
+                            <li><a href="#" class="link-dark rounded">Samsung</a></li>
+                            <li><a href="#" class="link-dark rounded">Xiaomi</a></li>
+                            <li><a href="#" class="link-dark rounded">Realmi</a></li>
+                            <hr class="imghr">
+                            <h5>Tablets</h5>
+                            <li><a href="#" class="link-dark rounded">Samsung Tablet</a></li>
+                            <li><a href="#" class="link-dark rounded">iphone Tablet</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#electronics" aria-expanded="false">Electronics & Home Decices</button>
+                    <div class="collapse " id="electronics">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Home Devices</h5>
+                            <li><a href="#" class="link-dark rounded">Smart TV</a></li>
+                            <li><a href="#" class="link-dark rounded">Aashing Machine</a></li>
+                            <li><a href="#" class="link-dark rounded">Air conditioner</a></li>
+                            <li><a href="#" class="link-dark rounded">radio</a></li>
+                            <hr class="imghr">
+                            <h5>Kichen Devices</h5>
+                            <li><a href="#" class="link-dark rounded">Microwave</a></li>
+                            <li><a href="#" class="link-dark rounded">Blender</a></li>
+                            <li><a href="#" class="link-dark rounded">Cooker</a></li>
+                            <li><a href="#" class="link-dark rounded">Oven</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#computer" aria-expanded="false">Computers & Laptops</button>
+                    <div class="collapse " id="computer">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <h5>Windows Computer</h5>
+
+                            <li><a href="#" class="link-dark rounded">Lenovo</a></li>
+                            <li><a href="#" class="link-dark rounded">Samsung</a></li>
+                            <li><a href="#" class="link-dark rounded">Msi</a></li>
+                            <li><a href="#" class="link-dark rounded">HP</a></li>
+                            <hr class="imghr">
+                            <h5>Apple</h5>
+                            <li><a href="#" class="link-dark rounded">Mac Book</a></li>
+                            <li><a href="#" class="link-dark rounded">Mac Book Pro</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#furnture" aria-expanded="false">Home Furniture</button>
+                    <div class="collapse " id="furnture">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">All Furniture</a></li>
+                            <li><a href="#" class="link-dark rounded">Living Room</a></li>
+                            <li><a href="#" class="link-dark rounded">BedRoom</a></li>
+                            <li><a href="#" class="link-dark rounded">Office Furniture</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#kitchen">Kitchen Tools</button>
+                    <div class="collapse " id="kitchen">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Coffee Markers</a></li>
+                            <li><a href="#" class="link-dark rounded">Blender</a></li>
+                            <li><a href="#" class="link-dark rounded">Large Appliance</a></li>
+                            <li><a href="#" class="link-dark rounded">Vacuums</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#Music">Music</button>
+                    <div class="collapse " id="Music">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Romantic</a></li>
+                            <li><a href="#" class="link-dark rounded">Rapp</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#Movies">Movies</button>
+                    <div class="collapse " id="Movies">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Action Movies</a></li>
+                            <li><a href="#" class="link-dark rounded">Drama</a></li>
+                            <li><a href="#" class="link-dark rounded">Romantic</a></li>
+                            <li><a href="#" class="link-dark rounded">Story</a></li>
+                            <li><a href="#" class="link-dark rounded">Egyption Movies</a></li>
+                            <li><a href="#" class="link-dark rounded">American Movies</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                        data-target="#Programes">Programes</button>
+                    <div class="collapse " id="Programes">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">Ios Programs</a></li>
+                            <li><a href="#" class="link-dark rounded">Android Programs</a></li>
+                            <li><a href="#" class="link-dark rounded">Windows Programs</a></li>
+                            <li><a href="#" class="link-dark rounded">Linux Tools</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+            </ul>
+            <div class="sidebaracount">
+                <a href="#">Your Account</a>
+                <a href="#">Language</a>
+                <a href="#">Country</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </div>
+        <button class="navbar-toggler" onclick="togglebar()" type="button">
+            <i class="bi bi-list"></i>
+        </button>
+        <!-- End Of Side bar -->
+        <!-- Search input  -->
+        <div class=" containersearch">
+            <div class="input-group mb-3 px-5 mt-4">
+                <input type="text" class="form-control searchinput" placeholder="Searching..">
+                <button class="btn btn-success col-2 searchbtn" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+
+        <!-- dropdown menu  -->
+        <div class="row mr-2">
+            <button class="btn col-6"><i class="bi bi-cart-plus"></i></button>
+            <div class="cart col-6">
+                <!-- Cart Button -->
+                <button class="header_img dropdown-toggle d-inline" data-toggle="dropdown" aria-expanded="false"
+                    id="dropdownMenuLink"><img src="../Images/3bdo.jpg" alt=""></button>
+                <ul class="dropdown-menu col-md-5 col-lg-2 text-right" aria-labelledby="dropdownMenuLink">
+                    <button class="btn btn-success dropdown-item signinbtn"
+                        onclick="window.location.href='html files/signIn.html'">Sign In</button>
+                    <li><a class="dropdown-item" href="#">View cart</a></li>
+                    <li><a class="dropdown-item" href="#">Your Acount</a></li>
+                    <li><a class="dropdown-item" href="#">Orders</a></li>
+                    <li><a class="dropdown-item" href="#">White List</a></li>
+                    <li><a class="dropdown-item" href="#">Saved item</a></li>
+                    <li><a class="dropdown-item" href="#">Your Address</a></li>
+                    <div class="mt-5 dropdown-item darkmode">
+                        <div id="switch">
+                            <div id="circle"></div>
+                        </div>
+                        <span>Dark Mode</span>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- Side Bar -->
+
+    <!--Container Main start-->
+    <div class="nav-header ">
+        <!--- Navbar --->
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid nav-center ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
+                    aria-controls="nvbCollapse">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
+                    <ul class="navbar-nav ">
+                        <a class="nav-link ml-4" href="#"></i>Home</a>
+                        <a class="nav-link ml-4" href="#"></i>Trend</a>
+                        <a class="nav-link ml-4" href="#"></i>Best Price</a>
+                        <a class="nav-link ml-4" href="#"></i>Offers</a>
+                        <a class="nav-link ml-4" href="#"></i>Pages</a>
+                        <a class="nav-link ml-4" href="#"></i>Groups</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--# Navbar #-->
+    </div>
+    <div class="filterbtn  ">
+        <button class="btn btn-success">Filter</button>
+    </div>
+    <!--Container Main end-->
+    <!-- The Body of the page  -->
+
+
+
+
+
+
+
+    <!-- Thi Is Fooooooooooooter -->
+    <footer>
+        <!-- <div class="col-2"></div> -->
+        <div class="container footerwidth">
+            <div class="row my-5">
+                <div class="col-3">
+                    <a class="navbar-brand ms-auto" href="EnterAddress.html"> Mingo</a>
+                    <p class="mingo">The fastest way to get your oreder Mingo , The first community for we would love to
+                        keep in touch with it </p>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                    <ul class="information">
+                        <h5>Information</h5>
+                        <li><a href="#" class="nav-item">Privacy Notes</a></li>
+                        <li><a href="#" class="nav-item">Terms & Condition</a></li>
+                        <li><a href="#" class="nav-item">Delivary Information</a></li>
+                        <li><a href="#" class="nav-item">Shapping</a></li>
+                        <li><a href="#" class="nav-item">Contact US</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                    <ul class="quicklinks">
+                        <h5>Quick Links</h5>
+                        <li><a href="#" class="nav-item">About Store</a></li>
+                        <li><a href="#" class="nav-item">About Us</a></li>
+                        <li><a href="#" class="nav-item">Services</a></li>
+                        <li><a href="#" class="nav-item">Pages</a></li>
+                        <li><a href="#" class="nav-item">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-3 newspaper">
+                    <h4>NewsPaper</h4>
+                    <p>Subscribe to get the lastest news updates and offer information ,Don't worry we don't send spams
+                    </p>
+                    <input type="email" class=" form-control py-4 pl-3 border" placeholder="Enter Email">
+                    <div class="social py-3">
+                        <a href="www.facebook.com"><i class="bi bi-facebook pl-3"></i></a>
+                        <a href="www.facebook.com"><i class="bi bi-youtube pl-3"></i></a>
+                        <a href="www.facebook.com"><i class="bi bi-twitter pl-3"></i></a>
+                        <a href="www.facebook.com"><i class="bi bi-instagram pl-3"></i></a>
+                        <a href="www.facebook.com"><i class="bi bi-telegram pl-3"></i></a>
+                        <a href="www.facebook.com"><i class="bi bi-github pl-3"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-2"></div> -->
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/Javascript' src="searching.js"></script>
+</body>
+
+</html>

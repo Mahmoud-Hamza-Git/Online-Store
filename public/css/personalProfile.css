@@ -1,0 +1,43 @@
+.imageicon{
+    max-width: 200px;
+}
+.imgcircle{
+    border-radius: 50%;
+    height: 200px;
+    overflow: hidden;
+}
+.imageinfo{
+    background-color: #fff;
+    height: 500px;
+}
+.editfield{
+    cursor: pointer;
+    margin-left: -20px;
+}
+.personaldetail{
+    background-color: #fff;
+    height: 500px;}
+.form-control{
+    border-bottom: 1px solid #777;
+    outline: none;
+}
+.searchinput{
+    border: 2px solid #646A70;
+}
+.btnchat{
+    border: 2px solid rgb(197, 196, 196);
+}
+.btnchat:hover{
+    background-color: rgb(199, 199, 199);
+}
+.imageinfo1{
+    background-color: #fff;
+    height: 300px;
+}
+.payment{
+    background-color: #fff;
+    height: 300px;
+}
+.mastertext{
+    font-weight: bold;
+}

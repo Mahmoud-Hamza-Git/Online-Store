@@ -1,0 +1,26 @@
+.cartproducts{
+    background-color: #fff;
+    height: 180px;
+}
+.checkout{
+    background-color: #fff;
+    min-height: 500px;
+}
+.imageproduct{
+    width: 150px;
+}
+.cartproducts p.h3{
+    font-weight: bold;
+}
+.checkout img{
+    max-width: 40px;
+}
+
+.paymentoption:hover{
+    background-color: #fbd8b4;
+    border-color: #f5d0aa;
+}
+.btncheckout{
+    font-weight: bold;
+    font-size: 18px;
+}
