@@ -1,0 +1,136 @@
+<!-- Side bar -->
+<header class="header">
+    <div class="sidenav shadow p-3 mb-5 bg-body rounded " id="sidebartoggle">
+        <a href="javascript:void(0)" class="closebtn" id="btnclose" onclick="closeNav()">&times;</a>
+        <a class="navbar-brand ms-auto" href="EnterAddress.html"> Mingo</a>
+        <hr>
+        <h4>Catogery</h4>
+        <ul class="list-unstyled ps-0">
+
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center" data-toggle="collapse"
+                    data-target="#home-collapse" aria-expanded="false">Men's Fasion</button>
+                <div class="collapse" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <h5>Cloths</h5>
+                        <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
+                        <li><a href="#" class="link-dark rounded">shoes</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+        </ul>
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center  " data-toggle="collapse"
+                    data-target="#se-collapse" aria-expanded="false">Women's Fasion</button>
+                <div class="collapse" id="se-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <h5>Cloths</h5>
+                        <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
+                        <li><a href="#" class="link-dark rounded">shoes</a></li>
+                        <hr class="imghr">
+                        <h5>Accessories</h5>
+                        <li><a href="#" class="link-dark rounded">Watches</a></li>
+                        <li><a href="#" class="link-dark rounded">Glasses</a></li>
+                        <li><a href="#" class="link-dark rounded">Jellawry</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+        </ul>
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded " data-toggle="collapse"
+                    data-target="#kidsFasion" aria-expanded="false">Kids Fasion</button>
+                <div class="collapse" id="kidsFasion">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <h5>Cloths</h5>
+                        <li><a href="#" class="link-dark rounded">Boys Clothes</a></li>
+                        <li><a href="#" class="link-dark rounded">girls Clothes</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+        </ul>
+        <hr class="imghr">
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                    data-target="#books" aria-expanded="false">Books</button>
+                <div class="collapse " id="books">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <h5>General</h5>
+                        <li><a href="#" class="link-dark rounded">Histry Books</a></li>
+                        <li><a href="#" class="link-dark rounded">Horror Books</a></li>
+                        <li><a href="#" class="link-dark rounded">Fiction Books</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+        </ul>
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
+                    data-target="#mobiles" aria-expanded="false">Mobiles</button>
+                <div class="collapse" id="mobiles">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <h5>Phons</h5>
+                        <li><a href="#" class="link-dark rounded">Iphone</a></li>
+                        <li><a href="#" class="link-dark rounded">Samsung</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+        </ul>
+    </div>
+
+    <button class="navbar-toggler" onclick="togglebar()" type="button">
+        <i class="bi bi-list"></i>
+    </button>
+
+
+
+    <!-- top navbar -->
+    <!-- Search input  -->
+    <div class=" containersearch">
+        <div class="input-group mb-3 px-5 mt-4">
+            <input type="text" class="form-control searchinput" placeholder="Searching..">
+            <button class="btn btn-success col-2 searchbtn" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+    </div>
+
+    <!-- dropdown menu  -->
+    <div class="row mr-2">
+        <button class="btn col-6"><i class="bi bi-cart-plus"></i></button>
+        <div class="cart col-6">
+            <!-- Cart Button -->
+            <button class="header_img dropdown-toggle d-inline" data-toggle="dropdown" aria-expanded="false"
+                id="dropdownMenuLink"><img src="Images/3bdo.jpg" alt=""></button>
+            <ul class="dropdown-menu col-md-5 col-lg-2 text-right" aria-labelledby="dropdownMenuLink">
+                <button class="btn btn-success dropdown-item signinbtn"
+                    onclick="window.location.href='html files/signIn.html'">Sign In</button>
+                <a role="button" class="btn btn-warning" href="/addProduct">Add Product</a>
+                <a role="button" class="btn btn-warning" href="/productPage">Product Page</a>
+                <a role="button" class="btn btn-warning" href="/sign_in">signIn</a>
+                <a role="button" class="btn btn-warning" href="/sign_up">signUp</a>
+                <a role="button" class="btn btn-warning" href="/cart">Cart</a>
+                <li><a class="dropdown-item" href="#">View cart</a></li>
+                <li><a class="dropdown-item" href="#">Your Acount</a></li>
+                <li><a class="dropdown-item" href="#">Orders</a></li>
+                <li><a class="dropdown-item" href="#">White List</a></li>
+                <li><a class="dropdown-item" href="#">Saved item</a></li>
+                <li><a class="dropdown-item" href="#">Your Address</a></li>
+                <div class="mt-5 dropdown-item darkmode">
+                    <div id="switch">
+                        <div id="circle"></div>
+                    </div>
+                    <span>Dark Mode</span>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+
+
+</header>

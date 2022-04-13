@@ -1,0 +1,12 @@
+/* #sidebartoggle{
+    transition: all .5s ease;
+}
+
+.shrink {
+    margin-left: -300px;
+} */
+
+.product_image{
+    width: 100%;
+    height:200px
+}

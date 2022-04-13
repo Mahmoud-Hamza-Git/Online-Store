@@ -1,6 +1,6 @@
-$(".hamburger").click(function () {
-   $(".wrapper").toggleClass("shrink");
-});
+// $(".hamburger").click(function () {
+//    $(".wrapper").toggleClass("shrink");
+// });
 
 $(".catigory_link").click(function(){
    const Class = $(this).attr("data-class");
@@ -11,4 +11,8 @@ $(".catigory_link").click(function(){
       Class : Class,
       Catigory : Catigory
    });
+});
+
+$(".mingo").click(function () {
+   $("#sidebartoggle").toggleClass("shrink");
 });
