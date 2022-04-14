@@ -143,7 +143,6 @@ app.get("/main", (req, res) => {
 
 //Sign In
 app.get("/", (req, res) => {
-    console.log("sign in page here we are!")
     res.render("signIn", { user: signedUser });
 })
 
@@ -244,19 +243,24 @@ app.get("/signOut", (req, res) => {
     res.redirect("/");
 })
 
-Product.find({ catigory: "clothes" }, (err, items) => {
-    if (err) {
-        console.log(err);
-    } else {
-        items
-    }
-})
+// Product.find({ catigory: "clothes" }, (err, items) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         items
+//     }
+// })
 
 
 // addProduct
 const catigories = ['Phones', 'Books', 'Clothes']
 app.get("/addProduct", function (req, res) {
-    res.render("addProduct", { catigories: catigories, user: signedUser, signed: false })
+    if (!signed) {
+        console.log("You need to Sign In first!")
+        res.redirect("/");
+    } else {
+        res.render("addProduct", { catigories: catigories, user: signedUser })
+    }
 })
 app.post("/addProduct", upload.single("image"), function (req, res) {
     const obj = new Product({
@@ -283,7 +287,12 @@ app.post("/addProduct", upload.single("image"), function (req, res) {
 
 //productPage
 app.get("/productPage", (req, res) => {
-    res.render("product", { user: signedUser });
+    if (!signed) {
+        console.log("You need to Sign In first!")
+        res.redirect("/");
+    } else {
+        res.render("product", { user: signedUser });
+    }
 })
 
 app.post("/productPage", (req, res) => {
@@ -301,7 +310,12 @@ app.post("/productPage", (req, res) => {
 
 //Personal Profile
 app.get("/profile", function (req, res) {
-    res.render("PersonalProfile", { user: signedUser })
+    if (!signed) {
+        console.log("You need to Sign In first!")
+        res.redirect("/");
+    } else {
+        res.render("PersonalProfile", { user: signedUser })
+    }
 })
 
 
@@ -334,35 +348,36 @@ app.get("/sign_up_seller", function (req, res) {
 
 
 
-app.post("/catigory",function(req,res){
-    // Catigory.updateOne({name:"books"},{$push : {products:product} },function(err,found){
-    //     if(!err){
-    //         console.log("apple product inserted succesfully")
-    //         res.redirect("/");
-    //     }
-    // })
-    Catigory.findOne({name:"fruits"},function(err,catigoryFound1){ //change books catigory to most_seller catigory
-        if(!err){
-            res.render("main",{products: catigoryFound1.products});
-        }
-    })
-})
+// app.post("/catigory",function(req,res){
+//     // Catigory.updateOne({name:"books"},{$push : {products:product} },function(err,found){
+//     //     if(!err){
+//     //         console.log("apple product inserted succesfully")
+//     //         res.redirect("/");
+//     //     }
+//     // })
+//     Catigory.findOne({name:"fruits"},function(err,catigoryFound1){ //change books catigory to most_seller catigory
+//         if(!err){
+//             res.render("main",{products: catigoryFound1.products});
+//         }
+//     })
+// })
 
-router.post ('/sign_in', function(req,res,next) {
-    var item = {
-        email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password
-    };
-    mongo.connect(url, function (err, db) {
-        assert.equal(null, err);
-        db.collection('userData').insertOne(item, function (err, result) {
-            assert.equal(null, err);
-            console.log('item has been inserted');
-            db.close;
-        });
-    });
+// router.post ('/sign_in', function(req,res,next) {
+//     var item = {
+//         email: req.body.email,
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
+//         password: req.body.password
+//     };
+//     mongo.connect(url, function (err, db) {
+//         assert.equal(null, err);
+//         db.collection('userData').insertOne(item, function (err, result) {
+//             assert.equal(null, err);
+//             console.log('item has been inserted');
+//             db.close;
+//         });
+//     });
+// });
 
 
 
