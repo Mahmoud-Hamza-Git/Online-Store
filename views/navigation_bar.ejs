@@ -2,7 +2,7 @@
 <header class="header">
     <div class="sidenav shadow p-3 mb-5 bg-body rounded " id="sidebartoggle">
         <a href="javascript:void(0)" class="closebtn" id="btnclose" onclick="closeNav()">&times;</a>
-        <a class="navbar-brand ms-auto" href="EnterAddress.html"> Mingo</a>
+        <a class="navbar-brand ms-auto" href="/main"> Mingo</a>
         <hr>
         <h4>Catogery</h4>
         <ul class="list-unstyled ps-0">
@@ -106,27 +106,26 @@
         <div class="cart col-6">
             <!-- Cart Button -->
             <button class="header_img dropdown-toggle d-inline" data-toggle="dropdown" aria-expanded="false"
-                id="dropdownMenuLink"><img src="Images/3bdo.jpg" alt=""></button>
+                id="dropdownMenuLink">
+                <% if(user.img.contentType==''){ %>
+                    <img src="images/user_icon.png">
+                <% }else { %>
+                    <img src="data:image/<%= user.img.contentType %>;base64,<%= user.img.data.toString('base64') %>">
+                <% } %>
+            </button>
             <ul class="dropdown-menu col-md-5 col-lg-2 text-right" aria-labelledby="dropdownMenuLink">
                 <button class="btn btn-success dropdown-item signinbtn"
                     onclick="window.location.href='html files/signIn.html'">Sign In</button>
-                <a role="button" class="btn btn-warning" href="/addProduct">Add Product</a>
-                <a role="button" class="btn btn-warning" href="/productPage">Product Page</a>
-                <a role="button" class="btn btn-warning" href="/sign_in">signIn</a>
-                <a role="button" class="btn btn-warning" href="/sign_up">signUp</a>
-                <a role="button" class="btn btn-warning" href="/cart">Cart</a>
-                <li><a class="dropdown-item" href="#">View cart</a></li>
-                <li><a class="dropdown-item" href="#">Your Acount</a></li>
-                <li><a class="dropdown-item" href="#">Orders</a></li>
-                <li><a class="dropdown-item" href="#">White List</a></li>
-                <li><a class="dropdown-item" href="#">Saved item</a></li>
-                <li><a class="dropdown-item" href="#">Your Address</a></li>
-                <div class="mt-5 dropdown-item darkmode">
+                <li><a class="dropdown-item h5" href="/profile">Your Profile</a></li>
+                <li><a class="dropdown-item h5" href="/cart">View cart</a></li>
+                <li><a class="dropdown-item h5" href="/addProduct">Add Product</a></li>
+                <li><a class="dropdown-item h5" href="/signOut">Sign Out</a></li>
+                <!-- <div class="mt-5 dropdown-item darkmode">
                     <div id="switch">
                         <div id="circle"></div>
                     </div>
                     <span>Dark Mode</span>
-                </div>
+                </div> -->
             </ul>
         </div>
     </div>
