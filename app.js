@@ -64,21 +64,19 @@ const userSchema = {
         street: String,
         zip: String,
     },
-    payment: {
+    payments: [{
         method: String,
         cardName: String,
         cardNumber: String,
         expiration: String,
         cvv: String
-    }
+    }]
 };
 
 
 //creating models(collections)
 const Product = mongoose.model("Product", Products_Schema);
 const User = mongoose.model("User", userSchema);
-
-
 
 
 
@@ -95,8 +93,38 @@ const User = mongoose.model("User", userSchema);
 
 
 //global variables
-var signedUser = { img: { contentType: '' } };
+var defaultUser = {
+    fname: '',
+    lname: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    admin: false,
+    img: {
+        data: '',
+        contentType: ''
+    },
+    cart: [''],
+    address: {
+        country: '',
+        state: '',
+        street: '',
+        zip: '',
+    },
+    payments: [{
+        method: '',
+        cardName: '',
+        cardNumber: '',
+        expiration: '',
+        cvv: ''
+    }]
+};
+
+var signedUser = defaultUser;
 var signed = false;
+
+
+
 //Main route
 app.get("/main", (req, res) => {
     if (!signed) {
@@ -107,7 +135,6 @@ app.get("/main", (req, res) => {
             if (err1) {
                 console.log(err1);
             } else {
-                console.log('the signed user id: ' + signedUser._id);
                 res.render("main", { products: items, user: signedUser, signed: true });
             }
         });
@@ -133,7 +160,6 @@ app.post("/", (req, res) => {
             if (item.password == password) {
                 signed = true;
                 signedUser = item;
-                console.log(signedUser);
                 res.redirect("/main");
             } else {
                 console.log("the password is wrong!")
@@ -172,13 +198,13 @@ app.post("/signUp", (req, res) => {
             street: req.body.street,
             zip: req.body.zip
         },
-        payment: {
+        payments: [{
             method: req.body.paymentMethod,
             cardName: req.body.cardName,
             cardNumber: req.body.cardNumber,
             expiration: req.body.expiration,
             cvv: req.body.cvv
-        }
+        }]
     });
     const email = req.body.email;
     const password = req.body.password;
@@ -214,16 +240,15 @@ app.post("/signUp", (req, res) => {
 //Sign Out
 app.get("/signOut", (req, res) => {
     signed = false;
-    signedUser = { img: { contentType: '' } };
-    console.log(signedUser);
+    signedUser = defaultUser;
     res.redirect("/");
 })
 
-Product.find({catigory: "clothes"},(err,items) => {
-    if(err){
+Product.find({ catigory: "clothes" }, (err, items) => {
+    if (err) {
         console.log(err);
-    }else{
-        items  
+    } else {
+        items
     }
 })
 
@@ -276,9 +301,16 @@ app.post("/productPage", (req, res) => {
 
 //Personal Profile
 app.get("/profile", function (req, res) {
-    res.render("PersonalProfile",{user: signedUser})
+    res.render("PersonalProfile", { user: signedUser })
 })
 
+
+// Add Pyament
+// app.post("/addPayment",function(req,res){
+//     User.updateOne({_id:signedUser._id},{ $push:{payments:{}} })
+// })
+// remove payment
+// Edit payment
 
 
 
