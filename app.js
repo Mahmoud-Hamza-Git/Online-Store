@@ -257,6 +257,21 @@ app.post("/catigory",function(req,res){
         }
     })
 })
+router.post ('/sign_in', function(req,res,next) {
+    var item = {
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: req.body.password
+    };
+    mongo.connect(url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('userData').insertOne(item, function (err, result) {
+            assert.equal(null, err);
+            console.log('item has been inserted');
+            db.close;
+        });
+    });
 
 
 
