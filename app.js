@@ -334,35 +334,35 @@ app.get("/sign_up_seller", function (req, res) {
 
 
 
-// app.post("/catigory",function(req,res){
-//     // Catigory.updateOne({name:"books"},{$push : {products:product} },function(err,found){
-//     //     if(!err){
-//     //         console.log("apple product inserted succesfully")
-//     //         res.redirect("/");
-//     //     }
-//     // })
-//     Catigory.findOne({name:"fruits"},function(err,catigoryFound1){ //change books catigory to most_seller catigory
-//         if(!err){
-//             res.render("main",{products: catigoryFound1.products});
-//         }
-//     })
-// })
+app.post("/catigory",function(req,res){
+    // Catigory.updateOne({name:"books"},{$push : {products:product} },function(err,found){
+    //     if(!err){
+    //         console.log("apple product inserted succesfully")
+    //         res.redirect("/");
+    //     }
+    // })
+    Catigory.findOne({name:"fruits"},function(err,catigoryFound1){ //change books catigory to most_seller catigory
+        if(!err){
+            res.render("main",{products: catigoryFound1.products});
+        }
+    })
+})
 
-// router.post ('/sign_in', function(req,res,next) {
-//     var item = {
-//         email: req.body.email,
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         password: req.body.password
-//     };
-//     mongo.connect(url, function (err, db) {
-//         assert.equal(null, err);
-//         db.collection('userData').insertOne(item, function (err, result) {
-//             assert.equal(null, err);
-//             console.log('item has been inserted');
-//             db.close;
-//         });
-//     });
+router.post ('/sign_in', function(req,res,next) {
+    var item = {
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: req.body.password
+    };
+    mongo.connect(url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('userData').insertOne(item, function (err, result) {
+            assert.equal(null, err);
+            console.log('item has been inserted');
+            db.close;
+        });
+    });
 
 
 
