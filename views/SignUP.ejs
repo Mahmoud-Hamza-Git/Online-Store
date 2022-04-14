@@ -72,8 +72,8 @@
 
                                 <div class="col-12">
                                     <label for="phonenumber" class="form-label">Phone Number</label>
-                                    <input type="number" class="form-control border" id="phonenumber" name="phoneNumber"
-                                        required>
+                                    <input type="text" class="form-control border" id="phonenumber" name="phoneNumber"
+                                        pattern="[0]{1}[1]{1}[0-9]{9}" maxlength="11" placeholder="01XXX XXX XXX" required>
                                 </div>
                                 <h4 class="m-3">Billing Address</h4>
                                 <div class="col-12">
@@ -84,39 +84,30 @@
 
                                 <div class="col-md-5">
                                     <label for="country" class="form-label">Country</label>
-                                    <select class="form-select border" id="country" required>
+                                    <select class="form-select border" id="country" name="country" required>
                                         <option value="">Choose...</option>
                                         <% countries.forEach( country => { %>
-                                            <option value="<%= country %>"><%= country %></option>
+                                            <option  value="<%= country %>"><%= country %></option>
                                         <% }); %>
-                                        
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="state" class="form-label">State</label>
-                                    <select class="form-select border" id="state" required>
+                                    <select class="form-select border" id="state" name="state" required>
                                         <option value="">Choose...</option>
-                                        <option>Cairo</option>
-                                        <option>Alaxandria</option>
-                                        <option>Tanta</option>
+                                        <% states.forEach( state => { %>
+                                            <option value="<%= state %>"><%= state %></option>
+                                        <% }); %>
                                     </select>
 
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="zip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control border" id="zip" placeholder="" required>
+                                    <input type="text" class="form-control border" id="zip" name="zip" required>
 
                                 </div>
                             </div>
-
-                            <hr class="my-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="save-info">
-                                <label class="form-check-label" for="save-info">Save this information for next
-                                    time</label>
-                            </div>
-
 
                             <hr class="my-4">
                             <div class="form-check mb-4 form-switch">
@@ -128,55 +119,53 @@
 
                             <div class="my-3 paymentinformation">
                                 <div class="form-check">
-                                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
+                                    <input id="credit" name="paymentMethod" value="Credit card" type="radio" class="form-check-input"
                                         checked required>
                                     <label class="form-check-label" for="credit">Credit card</label>
                                 </div>
                                 <div class="form-check">
-                                    <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                                    <input id="debit" name="paymentMethod" value="Debit card" type="radio" class="form-check-input"
                                         required>
                                     <label class="form-check-label" for="debit">Debit card</label>
                                 </div>
                                 <div class="form-check">
-                                    <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
+                                    <input id="paypal" name="paymentMethod" value="PayPal" type="radio" class="form-check-input"
                                         required>
-                                    <label class="form-check-label" for="paypal">PayPal</label>
+                                    <label class="form-check-label" for="paypal">Master Card</label>
                                 </div>
                             </div>
 
                             <div class="row gy-3 paymentinformation">
                                 <div class="col-md-6">
                                     <label for="cc-name" class="form-label">Name on card</label>
-                                    <input type="text" class="form-control border" id="cc-name" placeholder="" required>
+                                    <input type="text" class="form-control border" id="cc-name" name="cardName" required>
                                     <small class="text-muted">Full name as displayed on card</small>
-
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="cc-number" class="form-label">Credit card number</label>
-                                    <input type="text" class="form-control border" id="cc-number" placeholder=""
+                                    <input type="text" class="form-control border" id="cc-number" name="cardNumber" maxlength="16"
                                         required>
 
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="cc-expiration" class="form-label">Expiration</label>
-                                    <input type="text" class="form-control border" id="cc-expiration" placeholder=""
-                                        required>
+                                    <input type="text" class="form-control border" id="cc-expiration" name="expiration" placeholder="06/26"
+                                        maxlength="5" required>
 
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="cc-cvv" class="form-label">CVV</label>
-                                    <input type="text" class="form-control border" id="cc-cvv" placeholder="" required>
-
+                                    <input type="text" class="form-control border" id="cc-cvv" name="cvv" maxlength="3" required>
                                 </div>
                             </div>
 
                             <hr class="my-4">
 
                             <button class="w-100 btn btn-success btn-lg" type="submit">Sign Up</button>
-                            <p class="mt-3">You already have an account ? <a href="SignIn.html">Sign in</a></p>
+                            <p class="mt-3">You already have an account ? <a href="/">Sign In</a></p>
                         </form>
                     </div>
                 </div>

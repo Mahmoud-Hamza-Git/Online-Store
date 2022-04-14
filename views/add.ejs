@@ -22,13 +22,12 @@
             </div>
             <div>
                 <label>Catigory Of Products</label>
-                <!-- catigories.forEach(catigory => {  -->
-                <% for (let i=1 ; i<catigories.length ;i++){ %>
+                <% catigories.forEach(catigory => { %>
                     <div class="form-check" id="catigory">
-                        <input class="form-check-input" type="radio" name="catigory" value="<%= catigories[i].name %>" id="<%= catigories[i].name %>">
-                        <label class="form-check-label" for="<%= catigories[i].name %>"><%= catigories[i].name %></label>
+                        <input class="form-check-input" type="radio" name="catigory" value="<%= catigory %>" id="<%= catigory %>">
+                        <label class="form-check-label" for="<%= catigory %>"><%= catigory %></label>
                     </div>
-                <% }; %>
+                <% }); %>
             </div>
             <div>
                 <label for="description">Product Description</label>

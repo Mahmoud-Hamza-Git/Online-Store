@@ -16,3 +16,4 @@ $(".catigory_link").click(function(){
 $(".mingo").click(function () {
    $("#sidebartoggle").toggleClass("shrink");
 });
+
