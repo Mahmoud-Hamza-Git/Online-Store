@@ -5,122 +5,113 @@
     <link rel="stylesheet" href="css/cart.css">
     <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">    -->
     <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
-</head>
+    </head>
 
-<body id="body-pd">
-    <!-- Side bar -->
-    <%- include("navigation_bar.ejs") -%>
+    <body id="body-pd">
+        <%- include("navigation_bar.ejs") -%>
 
-    <!-- Side Bar -->
 
-    <!--Container Main start-->
-    <div class="nav-header ">
-        <!--- Navbar --->
-        <nav class="navbar navbar-expand-lg ">
-            <div class="container-fluid nav-center ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
-                    aria-controls="nvbCollapse">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
-                    <ul class="navbar-nav ">
-                        <a class="nav-link ml-4" href="#"></i>Home</a>
-                        <a class="nav-link ml-4" href="#"></i>Trend</a>
-                        <a class="nav-link ml-4" href="#"></i>Best Price</a>
-                        <a class="nav-link ml-4" href="#"></i>Offers</a>
-                        <a class="nav-link ml-4" href="#"></i>Pages</a>
-                        <a class="nav-link ml-4" href="#"></i>Groups</a>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!--# Navbar #-->
-    </div>
-    <!--Container Main end-->
-    <!-- The Body of the page  -->
-
-    <div class="row mt-3">
-        <div class="col-2"></div>
-        <div class="">
-            <div class="col mb-3 cartproducts border py-3">
-                <div class="d-flex">
-                    <div class="d-flex">
-                        <div><img src="../Images/access3.jpg" alt="imageproduct" class="imageproduct"></div>
-                        <div class="ml-4">
-                            <p class="h3 ml-3">Product Name</p>
-                            <p class="h5 ml-3">This is a breive description for the product</p>
-                            <p class="h4 ml-3">$145</p>
-                            <a href="#" class="text-success ml-3">Remove</a>
+            <!--Container Main start-->
+            <div class="nav-header ">
+                <!--- Navbar --->
+                <nav class="navbar navbar-expand-lg ">
+                    <div class="container-fluid nav-center ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
+                            aria-controls="nvbCollapse">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
+                            <ul class="navbar-nav ">
+                                <a class="nav-link ml-4" href="#"></i>Home</a>
+                                <a class="nav-link ml-4" href="#"></i>Trend</a>
+                                <a class="nav-link ml-4" href="#"></i>Best Price</a>
+                                <a class="nav-link ml-4" href="#"></i>Offers</a>
+                                <a class="nav-link ml-4" href="#"></i>Pages</a>
+                                <a class="nav-link ml-4" href="#"></i>Groups</a>
+                            </ul>
                         </div>
                     </div>
-                    <div class="d-flex ml-5">
-                        <p class="h4 mt-1">Qty</p>
-                        <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center" value="1">
-                    </div>
-                </div>
+                </nav>
             </div>
-            <div class="col mb-3 cartproducts border py-3">
-                <div class="d-flex">
-                    <div class="d-flex">
-                        <div><img src="../Images/access3.jpg" alt="imageproduct" class="imageproduct"></div>
-                        <div class="ml-4">
-                            <p class="h3 ml-3">Product Name</p>
-                            <p class="h5 ml-3">This is a breive description for the product</p>
-                            <p class="h4 ml-3">$145</p>
-                            <a href="#" class="text-success ml-3">Remove</a>
+            <!-- The Body of the page  -->
+            <div class="row mt-3">
+                <div class="col-1"></div>
+                <div class="itemsContainer col">
+                    <% user.cart.forEach( object => { %>
+                        <% if(object.product.img.contentType==''){ %>
+                            <div class="col mb-3 cartproducts border py-3 d-flex align-items-center justify-content-center" style="width:100%;">
+                                <h3 class="text-success">The cart is empty</h3>
+                            </div>
+                        <% }else { %>
+                            <div class="col mb-3 cartproducts border py-3">
+                                <div class="d-flex">
+                                    <div class="d-flex">
+                                        <div><img src="data:image/<%= object.product.img.contentType %>;base64,<%= object.product.img.data.toString('base64') %>" alt="imageproduct" class="imageproduct"></div>
+                                        <div><img src="" alt="imageproduct" class="imageproduct"></div>
+                                        <div class="ml-4">
+                                            <p class="h3 ml-3"><%= object.product.name %></p>
+                                            <p class="h5 ml-3"><%= object.product.s_description %></p>
+                                            <p class="h4 ml-3">$ <%= object.product.price %></p>
+                                            <a href="#" class="text-success ml-3">Remove</a>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex ml-5">
+                                        <p class="h4 mt-1">Qty</p>
+                                        <div class="smallBox border"><%= object.number %></div>
+                                        <!-- <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center"
+                                            value="1"> -->
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <div class="col col-lg-3 mx-lg-5 border checkout pt-3">
+                    <p class="h3">Information</p>
+                    <div class="d-flex mt-1">
+                        <label for="firstName" name="fname" class="form-label col-4">First name</label>
+                        <label for="firstName" name="fname" class="form-label col-8"><%= user.fname %></label>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <label  name="lname" class="form-label col-4">Last name</label>
+                        <label  name="lname" class="form-label col-8"><%= user.fname %></label>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <label  name="Email" class="form-label col-4">Email Address</label>
+                        <label  name="Email" class="form-label col-8"><%= user.email %></label>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <label  name="phoneNumber" class="form-label col-4">Phone Number</label>
+                        <label  name="phoneNumber" class="form-label col-8"><%= user.phoneNumber %></label>
+                    </div>
+                    <hr>
+                    <div class="address d-flex">
+                        <p class="h5">Address</p>
+                        <label for="firstName" name="fname" class="form-label col-8"><%= user.address.country %> - <%= user.address.state %> - <%= user.address.street %></label>
+                    </div>
+                    <hr>
+                    <div class="payment">
+                        <p class="h5 mb-4">Choose a payment method</p>
+                        <div class=" py-3 px-3 paymentoption">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio" id="Radio1" checked>
+                                <label class="form-check-label" for="Radio1">Mastercard</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radio" id="Radio2">
+                                <label class="form-check-label" for="Radio2">Cash on delivery</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex ml-5">
-                        <p class="h4 mt-1">Qty</p>
-                        <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center" value="1">
-                    </div>
+                    <button class="btn btn-success col py-3 my-3 btncheckout">Continue to checkout</button>
                 </div>
             </div>
-        </div>
-        <div class="col col-lg-3 mx-lg-5 border checkout pt-3">
-            <p class="h3">Information</p>
-            <div class="d-flex mt-1">
-                <label for="firstName" name="fname" class="form-label col-4">First name</label>
-                <label for="firstName" name="fname" class="form-label col-8">AbdElrahman</label>
-            </div>
-            <div class="d-flex mt-1">
-                <label for="firstName" name="fname" class="form-label col-4">Last name</label>
-                <label for="firstName" name="fname" class="form-label col-8">Shaban</label>
-            </div>
-            <div class="d-flex mt-1">
-                <label for="firstName" name="fname" class="form-label col-4">Email Address</label>
-                <label for="firstName" name="fname" class="form-label col-8">abdelrahman@gmail.com</label>
-            </div>
-            <div class="d-flex mt-1">
-                <label for="firstName" name="fname" class="form-label col-4">Phone Number</label>
-                <label for="firstName" name="fname" class="form-label col-8">010210000000</label>
-            </div>
-            <hr>
-            <div class="address d-flex">
-                <p class="h5">Address</p>
-                <a href="#" class="text-success d-flex justify-content-end">Edit</a>
-            </div>
-            <hr>
-            <div class="payment">
-                <p class="h5 mb-4">Choose a payment method</p>
-                <div class="d-flex py-3 px-3 paymentoption">
-                    <input type="radio">
-                    <p class="h6 ml-3">Cash on delivery</p>
-                </div>
-                <div class="d-flex py-3 px-3 paymentoption">
-                    <input type="radio" class=" mt-2">
-                    <img src="../Images/mastercard.jpg" alt="" class="ml-3">
-                    <p class="h6 ml-3 mt-2">Mastercard</p>
-                </div>
-            </div>
-            <button class="btn btn-success col py-3 mt-3 btncheckout">Continue to checkout</button>
-        </div>
-    </div>
 
 
 
-    <%- include("footer.ejs") -%>
-    <script type='text/Javascript' src="searching.js"></script>
-</body>
+            <%- include("footer.ejs") -%>
+                <script type='text/Javascript' src="searching.js"></script>
+    </body>
 
-</html>
+    </html>

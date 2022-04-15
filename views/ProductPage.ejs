@@ -4,636 +4,296 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">    -->
     <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
-</head>
+    </head>
 
-<body id="body-pd">
-    <%- include("navigation_bar.ejs") -%>
+    <body id="body-pd">
+        <%- include("navigation_bar.ejs") -%>
 
 
-    <!--Container Main start-->
-    <div class="nav-header ">
-        <!--- Navbar --->
-        <nav class="navbar navbar-expand-lg ">
-            <div class="container-fluid nav-center ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
-                    aria-controls="nvbCollapse">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
-                    <ul class="navbar-nav ">
-                        <a class="nav-link ml-4" href="#"></i>Home</a>
-                        <a class="nav-link ml-4" href="#"></i>Trend</a>
-                        <a class="nav-link ml-4" href="#"></i>Best Price</a>
-                        <a class="nav-link ml-4" href="#"></i>Offers</a>
-                        <a class="nav-link ml-4" href="#"></i>Pages</a>
-                        <a class="nav-link ml-4" href="#"></i>Groups</a>
-                    </ul>
-                </div>
+            <!--Container Main start-->
+            <div class="nav-header ">
+                <!--- Navbar --->
+                <nav class="navbar navbar-expand-lg ">
+                    <div class="container-fluid nav-center ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
+                            aria-controls="nvbCollapse">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
+                            <ul class="navbar-nav ">
+                                <a class="nav-link ml-4" href="#"></i>Home</a>
+                                <a class="nav-link ml-4" href="#"></i>Trend</a>
+                                <a class="nav-link ml-4" href="#"></i>Best Price</a>
+                                <a class="nav-link ml-4" href="#"></i>Offers</a>
+                                <a class="nav-link ml-4" href="#"></i>Pages</a>
+                                <a class="nav-link ml-4" href="#"></i>Groups</a>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!--# Navbar #-->
             </div>
-        </nav>
-        <!--# Navbar #-->
-    </div>
-    <!--Container Main end-->
-    <!-- The Body of the page  -->
-    <div class="container">
-        <div class="row">
-            <div class=" col-lg-6 col-12">
+            <!--Container Main end-->
+            <!-- The Body of the page  -->
+            <div class="container">
                 <div class="row">
-                    <div class=" mainProductImage col-9 shadow-sm p-3 mb-5 bg-white rounded">
-                        <img src="../Images/phone1.jpg " id="productimage" data-zoom-iamge="../Images/phone1"
-                            class="feature-image">
+                    <div class=" col-lg-6 col-12">
+                        <div class="row">
+                            <div class=" col-9 p-3 mb-5 bg-light rounded ">
+                                <img src="data:image/<%= product.img.contentType %>;base64,<%= product.img.data.toString('base64') %>">
+                            </div>
+                            <!-- <div class="mainProductImage col-2 ml-3 shadow-sm p-3 mb-5 bg-white rounded">
+                            <a href="#" class="childImageDiv"><img src="../Images/3bdo.jpg"class="childImage"><a>
+                            <a href="#" class="childImageDiv"><img src="../Images/laptop1.png"class="childImage"><a>
+                            <a href="#" class="childImageDiv"><img src="../Images/book.jpg" class="childImage"><a>
+                            <a href="#" class="childImageDiv"><img src="../Images/elec1.jpg" class="childImage"><a>
+                            <a href="#" class="childImageDiv"><img src="../Images/phone1.jpg"class="childImage"><a>
+                            </div> -->
+                        </div>
                     </div>
-                    <div class="mainProductImage col-2 ml-3 shadow-sm p-3 mb-5 bg-white rounded">
-                        <a href="#" class="childImageDiv"><img src="../Images/3bdo.jpg" alt="image"
-                                class="childImage "><a>
-                                <a href="#" class="childImageDiv"><img src="../Images/laptop1.png" alt="image"
-                                        class="childImage "><a>
-                                        <a href="#" class="childImageDiv"><img src="../Images/book.jpg" alt="image"
-                                                class="childImage "><a>
-                                                <a href="#" class="childImageDiv"><img src="../Images/elec1.jpg"
-                                                        alt="image" class="childImage "><a>
-                                                        <a href="#" class="childImageDiv"><img
-                                                                src="../Images/phone1.jpg" alt="image"
-                                                                class="childImage "><a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="productdetails col-lg-6 col-12">
-                <div class="namedes">
-                    <h3 class="productname">Xiaomi Phone</h3>
-                    <p class="productsmalldes">This is a breive desceription for the product that may contain some of
-                        the specisication for it so it help customers macking a full understand for what a product can
-                        do and chose the right prodcut</p>
-                </div>
-                <div class=" productboxdetail">
-                    <div class="rating">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star"></span>
-                        <span class="bi bi-star"></span>
-                    </div>
-                    <h6 class="price my-3">$159</h6>
-                    <div class="addfavorite row">
-                        <i class="bi bi-heart-fill"></i>
-                        <p class="h4">Add to favorite</p>
-                    </div>
-                    <div class="row btnonhoverproductbox">
-                        <input type="number" class="form-control border col-2 mx-4 cartnum" id="cartnum" placeholder="1"
-                            required>
-                        <button class="btn btnAddCart whitelistbtn col-4 border">ADD TO CART</button>
-                    </div>
-                    <div class="shareproduct">
-                        <p class="h4 mt-4">Share this Product</p>
-                        <div class="socialIconShare">
-                            <a href="www.facebook.com" class="sharlink"><i class="bi bi-facebook pl-3"></i></a>
-                            <a href="www.facebook.com" class="sharlink"><i class="bi bi-youtube pl-3"></i></a>
-                            <a href="www.facebook.com" class="sharlink"><i class="bi bi-twitter pl-3"></i></a>
-                            <a href="www.facebook.com" class="sharlink"><i class="bi bi-instagram pl-3"></i></a>
-                            <a href="www.facebook.com" class="sharlink"><i class="bi bi-telegram pl-3"></i></a>
+                    <div class="productdetails col-lg-6 col-12 ">
+                        <div class="namedes">
+                            <h3 class="productname my-3">
+                                <%= product.name %>
+                            </h3>
+                            <p class="productsmalldes">
+                                <%= product.s_description %>
+                            </p>
+                        </div>
+                        <div class=" productboxdetail">
+                            <div class="rating">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star"></span>
+                                <span class="bi bi-star"></span>
+                            </div>
+                            <h6 class="price my-5"><%= product.price %> $</h6>
+                            <!-- <div class="addfavorite row">
+                                <i class="bi bi-heart-fill"></i>
+                                <p class="h4">Add to favorite</p>
+                            </div> -->
+                            <form action="/addToCart" method="post" id="addToCart">
+                                <div class="row btnonhoverproductbox my-5">
+                                    <input type="number" name="number" class="form-control border col-2 mx-4 cartnum"
+                                        placeholder="0" required>
+                                    <input type="hidden" name="page" value="productPage">
+                                    <input type="hidden" name="id" value="<%= product._id %>">
+                                    <button onclick="$('#addToCart').submit()" class="btn btn-success col-4 rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                            <div class="shareproduct">
+                                <p class="h4 mt-4">Share this Product</p>
+                                <div class="socialIconShare">
+                                    <a href="https://www.facebook.com" class="sharlink"><i class="bi bi-facebook pl-3"></i></a>
+                                    <a href="#" class="sharlink"><i class="bi bi-youtube pl-3"></i></a>
+                                    <a href="#" class="sharlink"><i class="bi bi-twitter pl-3"></i></a>
+                                    <a href="#" class="sharlink"><i class="bi bi-instagram pl-3"></i></a>
+                                    <a href="#" class="sharlink"><i class="bi bi-telegram pl-3"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <br>
-        <!-- Nav tabs -->
-        <!-- <nav id="navbar" class="navbar">
-                <ul class="nav nav-tabs nav-menu" role="tablist">
-                    <li class="nav-item"><a data-scroll="home" href="# javascript:void(0)" class="dot active nav-link active" data-toggle="tab"><span>Home</span></a></li>
-                    <li class="nav-item"><a data-scroll="about" href="#about" class="dot nav-link" data-toggle="tab"><span>About me</span></a></li>
-                    <li class="nav-item"><a data-scroll="services" href="#services" class="dot nav-link" data-toggle="tab"><span>Services</span></a></li>
-                    <li class="nav-item"><a data-scroll="test" href="#test" class="dot nav-link" data-toggle="tab"><span>Testimonials</span></a></li>
-                    <li class="nav-item"><a data-scroll="contact" href="#contact" class="dot nav-link" data-toggle="tab"><span>Contact</span></a></li>
-                </ul>
-            </nav> -->
+                <br>
+                <!-- Start Nav Section -->
+                <nav id="navbar" class="navbar1 d-lg-block d-none d-lg-block">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a data-scroll="OverView" href="#OverView"
+                                class="dot active nav-link active" data-toggle="tab"><span>OverView</span></a></li>
+                        <!-- <li class="nav-item"><a data-scroll="Specifications" href="#Specifications" class="dot nav-link"
+                                data-toggle="tab"><span>Specifications</span></a></li> -->
+                        <li class="nav-item"><a data-scroll="Rating" href="#Rating" class="dot nav-link"
+                                data-toggle="tab"><span>Rating</span></a></li>
+                    </ul>
+                </nav>
+                <!-- End Nav Section -->
+                <!-- Start Home Section -->
+                <section id="OverView" class="section" style="min-height: 100px;">
+                    <!-- <p class="h2">Hightlight</p>
+                    <ul class="ml-5">
+                        <li>Add Hightlight for the product</li>
+                        <li>Add Hightlight for the product</li>
+                        <li>Add Hightlight for the product</li>
+                        <li>Add Hightlight for the product</li>
+                    </ul> -->
+                    <p class="h2">Overview</p>
+                    <p><%= product.l_description %></p>
+                </section>
+                <!-- <section id="Specifications" class="section">
+                    <p class="h2">Specifications</p>
+                    <div class="row mt-4 rowcolor specright">
+                        <div class="col-2">
+                            <div class="">
+                                <p class="h5">Speacial Features</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-5">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row specright">
+                        <div class="col-2">
+                            <div class="">
+                                <p class="h5">Brand Compatibility</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-5">
+                                <p class="h5">Color</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row rowcolor specright">
+                        <div class="col-2">
+                            <div class="">
+                                <p class="h5">Model Number</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-5">
+                                <p class="h5">Company</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row specright">
+                        <div class="col-2">
+                            <div class="">
+                                <p class="h5">Model Name</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="col-5">
+                                <p class="h5">Edition</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <p class="h5">Material</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Start Nav Section -->
-        <nav id="navbar" class="navbar1 d-lg-block d-none d-lg-block">
-            <ul class="nav-menu">
-                <li class="nav-item"><a data-scroll="OverView" href="#OverView" class="dot active nav-link active"
-                        data-toggle="tab"><span>OverView</span></a></li>
-                <li class="nav-item"><a data-scroll="Specifications" href="#Specifications" class="dot nav-link"
-                        data-toggle="tab"><span>Specifications</span></a></li>
-                <li class="nav-item"><a data-scroll="Rating" href="#Rating" class="dot nav-link"
-                        data-toggle="tab"><span>Rating</span></a></li>
-                <li class="nav-item"><a data-scroll="Related" href="#Related" class="dot nav-link"
-                        data-toggle="tab"><span>Related Products</span></a></li>
-            </ul>
-        </nav>
-        <!-- End Nav Section -->
-        <!-- Start Home Section -->
-        <section id="OverView" class="section">
-            <p class="h2">Hightlight</p>
-            <ul class="ml-5">
-                <li>Add Hightlight for the product</li>
-                <li>Add Hightlight for the product</li>
-                <li>Add Hightlight for the product</li>
-                <li>Add Hightlight for the product</li>
-            </ul>
-            <p class="h2">Overview</p>
-            <p>Here we write an overview for the product Here we write an overview for the product Here we write an
-                overview for the product Here we write an overview for the product Here we write an overview for the
-                product Here we write an overview for the product Here we write an overview for the product Here we
-                write an overview for the product Here we write an overview for the product Here we write an overview
-                for the product Here we write an overview for the product Here we write an overview for the product Here
-                we write an overview for the product </p>
-        </section>
-        <section id="Specifications" class="section">
-            <p class="h2">Specifications</p>
-            <div class="row mt-4 rowcolor specright">
-                <div class="col-2">
-                    <div class="">
-                        <p class="h5">Speacial Features</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="col-5">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row specright">
-                <div class="col-2">
-                    <div class="">
-                        <p class="h5">Brand Compatibility</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="col-5">
-                        <p class="h5">Color</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row rowcolor specright">
-                <div class="col-2">
-                    <div class="">
-                        <p class="h5">Model Number</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="col-5">
-                        <p class="h5">Company</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row specright">
-                <div class="col-2">
-                    <div class="">
-                        <p class="h5">Model Name</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="col-5">
-                        <p class="h5">Edition</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <p class="h5">Material</p>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-        <Section class="section" id="Rating">
-            <p class="h3">HAVE A QUESTION ?</p>
-            <input type="text" placeholder="Write your question" class="form-control border w-75">
-            <hr>
-
-            <p class="h4 ml-3">Rate this Product</p>
-            <div class="rate">
-                <input type="radio" id="star5" name="rate" value="5" />
-                <label for="star5" title="text">5 stars</label>
-                <input type="radio" id="star4" name="rate" value="4" />
-                <label for="star4" title="text">4 stars</label>
-                <input type="radio" id="star3" name="rate" value="3" />
-                <label for="star3" title="text">3 stars</label>
-                <input type="radio" id="star2" name="rate" value="2" />
-                <label for="star2" title="text">2 stars</label>
-                <input type="radio" id="star1" name="rate" value="1" />
-                <label for="star1" title="text">1 star</label>
-            </div>
-            <div class="addheadline">
-                <p class="h4 d-flex pt-5">Add a headline</p>
-                <input type="text" placeholder="Write a headline for your comminting"
-                    class="form-control border w-50 py-2">
+                </section> -->
                 <hr>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-4">
-                    <p class="h2">Overall Rating</p>
-                    <div class="row productboxdetail mt-2">
-                        <div class=" col">
-                            <span class="bi bi-star checked"></span>
-                            <span class="bi bi-star checked"></span>
-                            <span class="bi bi-star checked"></span>
-                            <span class="bi bi-star checked"></span>
-                            <span class="bi bi-star checked"></span>
+                <Section class="section" id="Rating">
+                    <!-- <p class="h3">HAVE A QUESTION ?</p>
+                    <input type="text" placeholder="Write your question" class="form-control border w-75"> -->
+                    
+
+                    <p class="h4 ml-3">Rate this Product</p>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-4">
+                            <p class="h2">Overall Rating</p>
+                            <div class="row productboxdetail mt-2">
+                                <div class=" col">
+                                    <span class="bi bi-star checked"></span>
+                                    <span class="bi bi-star checked"></span>
+                                    <span class="bi bi-star checked"></span>
+                                    <span class="bi bi-star checked"></span>
+                                    <span class="bi bi-star checked"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 ml-5">
+                            <div class="row mt-2">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <p class="h6 mt-1 ml-3">(50)</p>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star"></span>
+                                <p class="h6 mt-1 ml-3">(76)</p>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star"></span>
+                                <span class="bi bi-star"></span>
+                                <p class="h6 mt-1 ml-3">(102)</p>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star "></span>
+                                <span class="bi bi-star"></span>
+                                <span class="bi bi-star"></span>
+                                <p class="h6 mt-1 ml-3">(10)</p>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="bi bi-star checked"></span>
+                                <span class="bi bi-star "></span>
+                                <span class="bi bi-star "></span>
+                                <span class="bi bi-star"></span>
+                                <span class="bi bi-star"></span>
+                                <p class="h6 mt-1 ml-3">(50)</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6 ml-5">
-                    <div class="row mt-2">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <p class="h6 mt-1 ml-3">(50)</p>
-                    </div>
-                    <div class="row mt-2">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star"></span>
-                        <p class="h6 mt-1 ml-3">(76)</p>
-                    </div>
-                    <div class="row mt-2">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star"></span>
-                        <span class="bi bi-star"></span>
-                        <p class="h6 mt-1 ml-3">(102)</p>
-                    </div>
-                    <div class="row mt-2">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star "></span>
-                        <span class="bi bi-star"></span>
-                        <span class="bi bi-star"></span>
-                        <p class="h6 mt-1 ml-3">(10)</p>
-                    </div>
-                    <div class="row mt-2">
-                        <span class="bi bi-star checked"></span>
-                        <span class="bi bi-star "></span>
-                        <span class="bi bi-star "></span>
-                        <span class="bi bi-star"></span>
-                        <span class="bi bi-star"></span>
-                        <p class="h6 mt-1 ml-3">(50)</p>
-                    </div>
-                </div>
-            </div>
-        </Section>
-        <hr>
+                </Section>
+                <hr>
 
 
+                <%- include("footer.ejs") -%>
+                    <script type='text/Javascript' src="searching.js"></script>
+    </body>
 
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Related Products box -->
-        <section class="relatedProducts section" id="Related">
-            <p class="h3 d-flex justify-content-center">Related Products</p>
-            <div class="carousel-container">
-                <div class="inner-carousel">
-                    <div class="track">
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone4.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone2.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone2.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-container">
-                            <div class="card ">
-                                <a href="#" target="_blank" class="divimage"><img src="../Images/phone3.jpg"
-                                        alt="Lights" class="relatedProductsimage">
-                                    <div class="caption"></div>
-                                </a>
-                                <div class="namedes ml-4">
-                                    <h6 class="productname">Xiaomi Phone</h6>
-                                    <p class="productsmalldes">This is a small desceription for the product</p>
-                                </div>
-                                <div class="row productboxdetail m-2 mt-4">
-                                    <div class="ratingProduct col">
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star checked"></span>
-                                        <span class="bi bi-star"></span>
-                                        <span class="bi bi-star"></span>
-                                    </div>
-                                    <h6 class="  ml-auto">$159</h6>
-                                </div>
-                                <div class="row btnonhoverproductbox ml-3">
-                                    <button class="btn btnAddCart col-3 mx-2"><i
-                                            class="bi bi-cart-plus onhover"></i></button>
-                                    <button class="btn btnAddCart whitelistbtn col-7 mr-3">White list</button>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- <div class="nav">
-                        <button class="prev">></button>
-                        <button class="next"><</button>
-                      </div> -->
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-
-
-
-        <%- include("footer.ejs") -%>
-        <script type='text/Javascript' src="searching.js"></script>
-</body>
-
-</html>
+    </html>

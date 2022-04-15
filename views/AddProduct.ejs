@@ -75,20 +75,33 @@
                                     <input type="Number" class="form-control border" id="email" placeholder="EG 0.00"
                                         name="price" required>
                                 </div>
-                                <div class="ml-3">
-                                    <label>Catigory Of Products</label>
-                                    <% catigories.forEach(catigory => { %>
-                                        <div class="form-check" id="catigory">
-                                            <input class="form-check-input" type="radio" name="catigory" value="<%= catigory %>" id="<%= catigory %>">
-                                            <label class="form-check-label" for="<%= catigory %>"><%= catigory %></label>
-                                        </div>
-                                    <% }); %>
+                                <div class="row col-12 py-2">
+                                    <div class="col-md-5">
+                                        <label for="country" class="form-label">Main Category</label>
+                                        <select class="form-select border"id="select1" name="category1" oninput="myFunction()" required>
+                                            <option value="">Choose...</option>
+                                            <option value="Phones">Phones</option>
+                                            <option value="Books">Books</option>
+                                            <option value="Clothes">Clothes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="state" class="form-label">Derived ategory</label>
+                                        <select class="form-select border" id="select2"name="catigory2" >
+                                            <option id="choice" value="">Choose...</option>
+                                        </select>
+                                    </div>
                                 </div>
+                                
                                 <div class="col-12 py-2">
                                     <label for="text" class="form-label">Add a brief description <span
                                             class="text-muted"></span></label>
-                                    <textarea type="text" class="form-control border" name="description" id="desc"
+                                    <textarea type="text" class="form-control border" name="s_description" id="desc"
                                         placeholder="brief description" required></textarea>
+                                </div>
+                                <div class="col-12 py-2">
+                                    <label for="text" class="form-label">Add full descripion <span class="text-muted"></span></label>
+                                    <textarea type="text" name="l_description" class="form-control border" cols="30" rows="7" id="fulldescription" placeholder="add full description" required></textarea>
                                 </div>
                                 <!-- <div class="col-12 py-2">
                                     <label for="url" class="form-label">Checkout URL<span

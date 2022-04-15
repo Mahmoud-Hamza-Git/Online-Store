@@ -6,15 +6,14 @@
 
 <body id="body-pd">
     <%- include("navigation_bar.ejs") -%>
-
-
+    <%- include("carousel.ejs") -%>
     
     <!-- main content of the page -->
     <div class="main_container">
         <div class="row">
             <% products.forEach(product=>{ %>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
+                <div class="col-lg-3 col-md-4 col-sm-6" >
+                    <div class="card Item">
                         <div class="card-header">
                             <form id="<%= product._id %>" action="/productPage" method="post">
                                 <a href="#" onclick="$('#<%= product._id %>').submit()"><img class="product_image"
@@ -27,14 +26,14 @@
                                 <%= product.name %>
                             </h1>
                             <p>
-                                <%= product.description %>
+                                <%= product.s_description %>
                             </p>
                         </div>
                         <div class="card-footer">
                             <h1>
                                 <%= product.price %> $
                             </h1>
-                            <button class="pricing-button btn btn-lg btn-outline-dark w-100" type="button">Add to
+                            <button class="pricing-button btn btn-lg btn-success w-100" type="button">Add to
                                 cart</button>
                         </div>
                     </div>

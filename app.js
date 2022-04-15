@@ -17,66 +17,14 @@ app.use(express.static("public"));
 //connect to mongoDB
 mongoose.connect("mongodb://localhost:27017/storeDB"); //connect local
 
+//require our custom schema module
+const schema = require("./models/schema");
 
-//set up multer to upload files
-const multer = require("multer");
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now());
-    }
-});
-const upload = multer({ storage: storage });
-
-
-
-
-//creating schemas
-const Products_Schema = {
-    name: String,
-    price: Number,
-    description: String,
-    catigory1: String,
-    catigory2: String,
-    img: {
-        data: Buffer,
-        contentType: String
-    }
-}
-
-const userSchema = {
-    fname: String,
-    lname: String,
-    email: String,
-    password: String,
-    phoneNumber: String,
-    admin: Boolean,
-    img: {
-        data: Buffer,
-        contentType: String
-    },
-    cart: [String],
-    address: {
-        country: String,
-        state: String,
-        street: String,
-        zip: String,
-    },
-    payments: [{
-        method: String,
-        cardName: String,
-        cardNumber: String,
-        expiration: String,
-        cvv: String
-    }]
-};
-
-
-//creating models(collections)
-const Product = mongoose.model("Product", Products_Schema);
-const User = mongoose.model("User", userSchema);
+const upload = schema.upload;
+const User = schema.User;
+const Product = schema.Product;
+const defaultUser = schema.defaultUser;
+const defaultProduct = schema.defaultProduct;
 
 
 
@@ -92,34 +40,8 @@ const User = mongoose.model("User", userSchema);
 // });
 
 
-//global variables
-var defaultUser = {
-    fname: '',
-    lname: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-    admin: false,
-    img: {
-        data: '',
-        contentType: ''
-    },
-    cart: [''],
-    address: {
-        country: '',
-        state: '',
-        street: '',
-        zip: '',
-    },
-    payments: [{
-        method: '',
-        cardName: '',
-        cardNumber: '',
-        expiration: '',
-        cvv: ''
-    }]
-};
 
+//global variables
 var signedUser = defaultUser;
 var signed = false;
 
@@ -135,7 +57,7 @@ app.get("/main", (req, res) => {
             if (err1) {
                 console.log(err1);
             } else {
-                res.render("main", { products: items, user: signedUser, signed: true });
+                res.render("main", { products: items, user: signedUser });
             }
         });
     }
@@ -191,6 +113,7 @@ app.post("/signUp", (req, res) => {
         img: {
             contentType: ''
         },
+        cart: [{ product:defaultProduct, number: 0 }],
         address: {
             country: req.body.country,
             state: req.body.state,
@@ -253,20 +176,20 @@ app.get("/signOut", (req, res) => {
 
 
 // addProduct
-const catigories = ['Phones', 'Books', 'Clothes']
 app.get("/addProduct", function (req, res) {
     if (!signed) {
         console.log("You need to Sign In first!")
         res.redirect("/");
     } else {
-        res.render("addProduct", { catigories: catigories, user: signedUser })
+        res.render("addProduct", { user: signedUser })
     }
 })
 app.post("/addProduct", upload.single("image"), function (req, res) {
     const obj = new Product({
         name: req.body.name,
         price: req.body.price,
-        description: req.body.description,
+        s_description: req.body.s_description,
+        l_description: req.body.l_description,
         catigory1: req.body.catigory,
         img: {
             data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename)),
@@ -291,18 +214,63 @@ app.get("/productPage", (req, res) => {
         console.log("You need to Sign In first!")
         res.redirect("/");
     } else {
-        res.render("product", { user: signedUser });
+        res.render("productPage", { user: signedUser });
     }
 })
 
 app.post("/productPage", (req, res) => {
-    const productId = req.body.productId;
-    // const catigoryId = req.body.product[1];  //we can use array or object to be passed
-    Product.findOne({ _id: productId }, (err, item) => {
+    if (!signed) {
+        console.log("You need to Sign In first!")
+        res.redirect("/");
+    } else {
+        const productId = req.body.productId;
+        // const catigoryId = req.body.product[1];  //we can use array or object to be passed
+        Product.findOne({ _id: productId }, (err, item) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("ProductPage", { product: item, user: signedUser });
+            }
+        });
+    }
+});
+
+
+// Cart
+app.get("/cart", function (req, res) {
+    res.render("cart",{user: signedUser})
+})
+
+
+//add to cart
+app.post("/addToCart", (req, res) => {
+    const page = req.body.page;
+    const productNumber = req.body.number;
+    const productId = req.body.id;
+    const obj = {
+        product: {},
+        number: productNumber
+    }
+    Product.findOne({_id:productId},(err,foundProduct) => {
+        if(err){
+            console.log(err);
+        }else{
+            obj.product = foundProduct;
+        }
+    });
+    
+    User.updateOne({ _id: signedUser }, { $push: { cart: obj } }, function (err) {
         if (err) {
             console.log(err);
         } else {
-            res.render("product", { product: item, user: signedUser });
+            console.log("product added to cart!");
+            Product.findOne({ _id: productId }, (err, item) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render(page, { product: item, user: signedUser });
+                }
+            });
         }
     });
 });
@@ -323,26 +291,11 @@ app.get("/profile", function (req, res) {
 // app.post("/addPayment",function(req,res){
 //     User.updateOne({_id:signedUser._id},{ $push:{payments:{}} })
 // })
+
 // remove payment
+
 // Edit payment
 
-
-
-
-
-app.get("/cart", function (req, res) {
-    res.render("cart")
-})
-
-app.get("/search", function (req, res) {
-    res.render("Searching")
-})
-app.get("/cart", function (req, res) {
-    res.render("cart")
-})
-app.get("/sign_up_seller", function (req, res) {
-    res.render("signupseller")
-})
 
 
 
