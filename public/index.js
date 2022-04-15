@@ -20,11 +20,11 @@
 //    $("#sidebartoggle").toggleClass("shrink");
 // });
 
-const catigories = {Phones:['Samsung','Hauwi','Apple'],Books:['Historical','Novels','Fiction'],Clothes:['Kids','Women','Men'] }
+const catigories = {Phones:['Samsung','Huawei','Apple'],Books:['Historical','Novels','Fiction'],Clothes:['Kids','Women','Men'] }
 function myFunction(){
    $('.choiceOption').remove();
    let catigory1 = $('#select1').val();
    catigories[catigory1].forEach(element => {
-      $('#choice').after("<option class='choiceOption' value='"+element+" '> "+element+"</option>");
+      $('#choice').after("<option class='choiceOption' value='"+element+"'> "+element+"</option>");
    });
 }

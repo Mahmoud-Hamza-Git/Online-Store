@@ -28,16 +28,6 @@ const defaultProduct = schema.defaultProduct;
 
 
 
-// 6257c5864ab8291ca0657cd5
-// 6257c6b34ab8291ca0657cd7
-// 6257c7038947912fb326b307
-// 6257cca7fcd406c72d1966ee
-
-// User.find({
-//     '_id': { $in: ['6257c5864ab8291ca0657cd5','6257c6b34ab8291ca0657cd7', '6257c7038947912fb326b307','6257cca7fcd406c72d1966ee']}
-// }, function(err, docs){
-//      console.log(docs);
-// });
 
 
 
@@ -111,9 +101,9 @@ app.post("/signUp", (req, res) => {
         phoneNumber: req.body.phoneNumber,
         admin: false,
         img: {
+            data: '',
             contentType: ''
         },
-        cart: [{ product:defaultProduct, number: 0 }],
         address: {
             country: req.body.country,
             state: req.body.state,
@@ -166,13 +156,7 @@ app.get("/signOut", (req, res) => {
     res.redirect("/");
 })
 
-// Product.find({ catigory: "clothes" }, (err, items) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         items
-//     }
-// })
+
 
 
 // addProduct
@@ -190,13 +174,13 @@ app.post("/addProduct", upload.single("image"), function (req, res) {
         price: req.body.price,
         s_description: req.body.s_description,
         l_description: req.body.l_description,
-        catigory1: req.body.catigory,
+        catigory1: req.body.catigory1,
+        catigory2: req.body.catigory2,
         img: {
             data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename)),
             contentType: 'image/png'
         }
     })
-    console.log()
     obj.save((err) => {
         if (err) {
             console.log(err);
@@ -236,6 +220,26 @@ app.post("/productPage", (req, res) => {
 });
 
 
+// catigories of products
+app.post("/catigory",(req,res) => {
+    if (!signed) {
+        console.log("You need to Sign In first!")
+        res.redirect("/");
+    } else {
+        const catigory1 = req.body.catigory1;
+        const catigory2 = req.body.catigory2;
+        Product.find({catigory1: catigory1 , catigory2: catigory2}, function(err,items){
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("main", { products: items, user: signedUser });
+            }
+        });
+    }
+});
+
+
+
 // Cart
 app.get("/cart", function (req, res) {
     res.render("cart",{user: signedUser})
@@ -247,32 +251,26 @@ app.post("/addToCart", (req, res) => {
     const page = req.body.page;
     const productNumber = req.body.number;
     const productId = req.body.id;
-    const obj = {
-        product: {},
-        number: productNumber
-    }
-    Product.findOne({_id:productId},(err,foundProduct) => {
-        if(err){
-            console.log(err);
+    Product.findOne({_id:productId},(err1,foundProduct) => {
+        if(err1){
+            console.log(err1);
         }else{
-            obj.product = foundProduct;
-        }
-    });
-    
-    User.updateOne({ _id: signedUser }, { $push: { cart: obj } }, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("product added to cart!");
-            Product.findOne({ _id: productId }, (err, item) => {
-                if (err) {
-                    console.log(err);
+            let obj1 = {
+                product: foundProduct,
+                number: productNumber
+            }
+            User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } } , function (err2,item) {
+                if (err2) {
+                    console.log(err2);
                 } else {
-                    res.render(page, { product: item, user: signedUser });
+                    console.log("product added to cart!");
+                    console.log(signedUser.cart);
+                    res.render(page, { product: foundProduct, user: signedUser });
                 }
             });
         }
     });
+    
 });
 
 
@@ -297,40 +295,6 @@ app.get("/profile", function (req, res) {
 // Edit payment
 
 
-
-
-
-
-// app.post("/catigory",function(req,res){
-//     // Catigory.updateOne({name:"books"},{$push : {products:product} },function(err,found){
-//     //     if(!err){
-//     //         console.log("apple product inserted succesfully")
-//     //         res.redirect("/");
-//     //     }
-//     // })
-//     Catigory.findOne({name:"fruits"},function(err,catigoryFound1){ //change books catigory to most_seller catigory
-//         if(!err){
-//             res.render("main",{products: catigoryFound1.products});
-//         }
-//     })
-// })
-
-// router.post ('/sign_in', function(req,res,next) {
-//     var item = {
-//         email: req.body.email,
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         password: req.body.password
-//     };
-//     mongo.connect(url, function (err, db) {
-//         assert.equal(null, err);
-//         db.collection('userData').insertOne(item, function (err, result) {
-//             assert.equal(null, err);
-//             console.log('item has been inserted');
-//             db.close;
-//         });
-//     });
-// });
 
 
 

@@ -4,50 +4,55 @@
         <a href="javascript:void(0)" class="closebtn" id="btnclose" onclick="closeNav()">&times;</a>
         <a class="navbar-brand ms-auto" href="/main"> Mingo</a>
         <hr>
-        <h4>Catogery</h4>
-        <ul class="list-unstyled ps-0">
-
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center" data-toggle="collapse"
-                    data-target="#home-collapse" aria-expanded="false">Men's Fasion</button>
-                <div class="collapse" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <h5>Cloths</h5>
-                        <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
-                        <li><a href="#" class="link-dark rounded">shoes</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-        </ul>
+        <h4 class="mb-5">Catogeries</h4>
         <ul class="list-unstyled ps-0">
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center  " data-toggle="collapse"
-                    data-target="#se-collapse" aria-expanded="false">Women's Fasion</button>
+                    data-target="#se-collapse" aria-expanded="false">Smart Phones</button>
                 <div class="collapse" id="se-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <h5>Cloths</h5>
-                        <li><a href="#" class="link-dark rounded">T-Sharts</a></li>
-                        <li><a href="#" class="link-dark rounded">shoes</a></li>
-                        <hr class="imghr">
-                        <h5>Accessories</h5>
-                        <li><a href="#" class="link-dark rounded">Watches</a></li>
-                        <li><a href="#" class="link-dark rounded">Glasses</a></li>
-                        <li><a href="#" class="link-dark rounded">Jellawry</a></li>
+                        <form action="/catigory" method="post" id="catigory1">
+                            <li><a href="#" onclick="$('#catigory1').submit()" class="link-dark rounded">Apple</a></li>
+                            <input type="hidden" name="catigory1" value="Phones"></input>
+                            <input type="hidden" name="catigory2" value="Apple"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory2">
+                            <li><a href="#" onclick="$('#catigory2').submit()" class="link-dark rounded">Huawei</a></li>
+                            <input type="hidden" name="catigory1" value="Phones"></input>
+                            <input type="hidden" name="catigory2" value="Huawei"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory3">
+                            <li><a href="#" onclick="$('#catigory3').submit()" class="link-dark rounded">Samsung</a></li>
+                            <input type="hidden" name="catigory1" value="Phones"></input>
+                            <input type="hidden" name="catigory2" value="Samsung"></input>
+                        </form>
                     </ul>
                 </div>
             </li>
             <li class="mb-1">
         </ul>
+        <hr class="imghr">
         <ul class="list-unstyled ps-0">
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center rounded " data-toggle="collapse"
-                    data-target="#kidsFasion" aria-expanded="false">Kids Fasion</button>
+                    data-target="#kidsFasion" aria-expanded="false">Clothes</button>
                 <div class="collapse" id="kidsFasion">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <h5>Cloths</h5>
-                        <li><a href="#" class="link-dark rounded">Boys Clothes</a></li>
-                        <li><a href="#" class="link-dark rounded">girls Clothes</a></li>
+                        <form action="/catigory" method="post" id="catigory4">
+                            <li><a href="#" onclick="$('#catigory4').submit()" class="link-dark rounded">Men</a></li>
+                            <input type="hidden" name="catigory1" value="Clothes"></input>
+                            <input type="hidden" name="catigory2" value="Men"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory5">
+                            <li><a href="#" onclick="$('#catigory5').submit()" class="link-dark rounded">Women</a></li>
+                            <input type="hidden" name="catigory1" value="Clothes"></input>
+                            <input type="hidden" name="catigory2" value="Women"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory6">
+                            <li><a href="#" onclick="$('#catigory6').submit()" class="link-dark rounded">Kids</a></li>
+                            <input type="hidden" name="catigory1" value="Clothes"></input>
+                            <input type="hidden" name="catigory2" value="Kids"></input>
+                        </form>
                     </ul>
                 </div>
             </li>
@@ -61,23 +66,21 @@
                 <div class="collapse " id="books">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <h5>General</h5>
-                        <li><a href="#" class="link-dark rounded">Histry Books</a></li>
-                        <li><a href="#" class="link-dark rounded">Horror Books</a></li>
-                        <li><a href="#" class="link-dark rounded">Fiction Books</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-        </ul>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-toggle="collapse"
-                    data-target="#mobiles" aria-expanded="false">Mobiles</button>
-                <div class="collapse" id="mobiles">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <h5>Phons</h5>
-                        <li><a href="#" class="link-dark rounded">Iphone</a></li>
-                        <li><a href="#" class="link-dark rounded">Samsung</a></li>
+                        <form action="/catigory" method="post" id="catigory7">
+                            <li><a href="#" onclick="$('#catigory7').submit()" class="link-dark rounded">Historical Books</a></li>
+                            <input type="hidden" name="catigory1" value="Books"></input>
+                            <input type="hidden" name="catigory2" value="Historical"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory8">
+                            <li><a href="#" onclick="$('#catigory8').submit()" class="link-dark rounded">Novels</a></li>
+                            <input type="hidden" name="catigory1" value="Books"></input>
+                            <input type="hidden" name="catigory2" value="Novels"></input>
+                        </form>
+                        <form action="/catigory" method="post" id="catigory9">
+                            <li><a href="#" onclick="$('#catigory9').submit()" class="link-dark rounded">Fiction Books</a></li>
+                            <input type="hidden" name="catigory1" value="Books"></input>
+                            <input type="hidden" name="catigory2" value="Fiction"></input>
+                        </form>
                     </ul>
                 </div>
             </li>
@@ -117,8 +120,8 @@
                 <button class="btn btn-success dropdown-item signinbtn"
                     onclick="window.location.href='/main'">Home Page</button>
                 <li><a class="dropdown-item h5" href="/profile">Your Profile</a></li>
-                <li><a class="dropdown-item h5" href="/cart">View cart</a></li>
                 <li><a class="dropdown-item h5" href="/addProduct">Add Product</a></li>
+                <li><a class="dropdown-item h5" href="#">View cart</a></li>
                 <li><a class="dropdown-item h5" href="/signOut">Sign Out</a></li>
                 <!-- <div class="mt-5 dropdown-item darkmode">
                     <div id="switch">
