@@ -1,8 +1,4 @@
-.product_image{
-    width: 100%;
-    height:200px
-}
-/* main products */
+/* main products page */
 .main_container{
   box-sizing: border-box;
   border-bottom-left-radius: 10px;
@@ -15,6 +11,10 @@
   border-radius: 20px;
   display: block;
   margin: 10px 8px;
+}
+.product_image{
+  width: 100%;
+  height:200px
 }
 .main_container .card .card-header{
   background-color: #e5f8ff;
@@ -30,6 +30,20 @@
   border-bottom-right-radius: 20px;
   text-align: center;
 }
+
+
+
+
+/* some style in cart page */
+.smallBox{
+  border: 4px solid gold;
+  border-radius: 10px;
+  width: 70px;
+  height: fit-content;
+  text-align: center;
+}
+
+
 
 /* carousel */
 .carousel {
@@ -163,4 +177,3 @@ opacity: 1;
 
 
 input:checked + .slide-container .nav label { display: block; }
-

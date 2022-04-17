@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="css/ProductPage.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/customStyle.css">
     <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">    -->
     <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
     </head>
@@ -37,57 +38,76 @@
             <div class="row mt-3">
                 <div class="col-1"></div>
                 <div class="itemsContainer col">
-                    <% user.cart.forEach( element => { %>
-                        <% if(element.product.img.contentType==''){ %>
-                            <div class="col mb-3 cartproducts border py-3 d-flex align-items-center justify-content-center" style="width:100%;">
-                                <h3 class="text-success">The cart is empty</h3>
-                            </div>
-                        <% }else { %>
+                    <% if(0==user.cart.length){ %>
+                        <div class="col mb-3 cartproducts border py-3 d-flex align-items-center justify-content-center"
+                            style="width:100%;">
+                            <h3 class="text-success">The cart is empty</h3>
+                        </div>
+                    <% }else { %>
+                        <% user.cart.forEach( element=> { %>
                             <div class="col mb-3 cartproducts border py-3">
                                 <div class="d-flex">
                                     <div class="d-flex">
-                                        <div><img src="data:image/<%= element.product.img.contentType %>;base64,<%= element.product.img.data.toString('base64') %>" alt="imageproduct" class="imageproduct"></div>
+                                        <div><img
+                                                src="data:image/<%= element.product.img.contentType %>;base64,<%= element.product.img.data.toString('base64') %>"
+                                                alt="imageproduct" class="imageproduct"></div>
                                         <div class="ml-4">
-                                            <p class="h3 ml-3"><%= element.product.name %></p>
-                                            <p class="h5 ml-3"><%= element.product.s_description %></p>
-                                            <p class="h4 ml-3">$ <%= element.product.price %></p>
+                                            <p class="h3 ml-3">
+                                                <%= element.product.name %>
+                                            </p>
+                                            <p class="h5 ml-3">
+                                                <%= element.product.s_description %>
+                                            </p>
+                                            <p class="h4 ml-3">$ <%= element.product.price %>
+                                            </p>
                                             <a href="#" class="text-success ml-3">Remove</a>
                                         </div>
                                     </div>
                                     <div class="d-flex ml-5">
-                                        <p class="h4 mt-1">Qty</p>
-                                        <div class="smallBox border"><%= element.number %></div>
+                                        <p class="h4">Quantity:</p>
+                                        <div class="smallBox ml-4">
+                                            <%= element.number %>
+                                        </div>
                                         <!-- <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center"
-                                            value="1"> -->
+                                        value="1"> -->
                                     </div>
-                                    
                                 </div>
                             </div>
-                        <% } %>
-                    <% }); %>
+                        <% }); %>
+                    <% } %>
                 </div>
                 <div class="col col-lg-3 mx-lg-5 border checkout pt-3" style="height: fit-content;">
                     <p class="h3">Information</p>
                     <div class="d-flex mt-1">
                         <label for="firstName" name="fname" class="form-label col-4">First name</label>
-                        <label for="firstName" name="fname" class="form-label col-8"><%= user.fname %></label>
+                        <label for="firstName" name="fname" class="form-label col-8">
+                            <%= user.fname %>
+                        </label>
                     </div>
                     <div class="d-flex mt-1">
-                        <label  name="lname" class="form-label col-4">Last name</label>
-                        <label  name="lname" class="form-label col-8"><%= user.fname %></label>
+                        <label name="lname" class="form-label col-4">Last name</label>
+                        <label name="lname" class="form-label col-8">
+                            <%= user.fname %>
+                        </label>
                     </div>
                     <div class="d-flex mt-1">
-                        <label  name="Email" class="form-label col-4">Email Address</label>
-                        <label  name="Email" class="form-label col-8"><%= user.email %></label>
+                        <label name="Email" class="form-label col-4">Email Address</label>
+                        <label name="Email" class="form-label col-8">
+                            <%= user.email %>
+                        </label>
                     </div>
                     <div class="d-flex mt-1">
-                        <label  name="phoneNumber" class="form-label col-4">Phone Number</label>
-                        <label  name="phoneNumber" class="form-label col-8"><%= user.phoneNumber %></label>
+                        <label name="phoneNumber" class="form-label col-4">Phone Number</label>
+                        <label name="phoneNumber" class="form-label col-8">
+                            <%= user.phoneNumber %>
+                        </label>
                     </div>
                     <hr>
                     <div class="address d-flex">
                         <p class="h5">Address</p>
-                        <label for="firstName" name="fname" class="form-label col-8"><%= user.address.country %> - <%= user.address.state %> - <%= user.address.street %></label>
+                        <label for="firstName" name="fname" class="form-label col-8">
+                            <%= user.address.country %> - <%= user.address.state %> - <%= user.address.street %>
+                        </label>
                     </div>
                     <hr>
                     <div class="payment">

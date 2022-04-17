@@ -28,3 +28,6 @@ function myFunction(){
       $('#choice').after("<option class='choiceOption' value='"+element+"'> "+element+"</option>");
    });
 }
+
+// const x = null;
+// console.log(x.toString('base64'));

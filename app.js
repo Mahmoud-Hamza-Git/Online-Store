@@ -24,15 +24,14 @@ const upload = schema.upload;
 const User = schema.User;
 const Product = schema.Product;
 const defaultUser = schema.defaultUser;
-const defaultProduct = schema.defaultProduct;
-
+// node.js is asynchronous so to prevent that use callback functions and order them according to periority of data deeded from each one.
 
 
 
 
 
 //global variables
-var signedUser = defaultUser;
+var signedUser = null;
 var signed = false;
 
 
@@ -40,12 +39,17 @@ var signed = false;
 //Main route
 app.get("/main", (req, res) => {
     if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
-    } else {
-        Product.find({}, function (err1, items) {
-            if (err1) {
-                console.log(err1);
+        // save the default user in database if not saved.
+        signedUser = defaultUser;
+        Product.find({}, function (err, items) {
+            if (!err) {
+                res.render("main", { products: items, user: signedUser });
+            }
+        });
+    }else {
+        Product.find({}, function (err, items) {
+            if (err) {
+                console.log(err);
             } else {
                 res.render("main", { products: items, user: signedUser });
             }
@@ -53,9 +57,16 @@ app.get("/main", (req, res) => {
     }
 });
 
+
 //Sign In
 app.get("/", (req, res) => {
-    res.render("signIn", { user: signedUser });
+    if (!signed) {
+        // res.render('loading');   // try later using looding page in the start of the website.
+        signedUser = defaultUser;
+        res.render("signIn", { user: signedUser });
+    } else {
+        res.render("signIn", { user: signedUser });  ///have to had a way to get back to the sign in,sign up and home page while iam signed//////////////
+    }
 })
 
 app.post("/", (req, res) => {
@@ -74,6 +85,7 @@ app.post("/", (req, res) => {
                 res.redirect("/main");
             } else {
                 console.log("the password is wrong!")
+                res.redirect('/');
             }
         }
     });
@@ -89,7 +101,12 @@ countries.sort();
 states.sort();
 
 app.get("/signUp", (req, res) => {
-    res.render("signUp", { countries: countries, states: states, user: signedUser });
+    if (!signed) {
+        signedUser = defaultUser;
+        res.render("signUp", { countries: countries, states: states, user: signedUser });
+    } else {
+        res.render("signUp", { countries: countries, states: states, user: signedUser });
+    }
 })
 
 app.post("/signUp", (req, res) => {
@@ -150,7 +167,7 @@ app.post("/signUp", (req, res) => {
 
 
 //Sign Out
-app.get("/signOut", (req, res) => {
+app.get("/signOut", (req, res) => { ///it's easier to make get request in html file,and also there is no data to be posted
     signed = false;
     signedUser = defaultUser;
     res.redirect("/");
@@ -162,12 +179,12 @@ app.get("/signOut", (req, res) => {
 // addProduct
 app.get("/addProduct", function (req, res) {
     if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
+        signedUser = defaultUser;
+        res.render("addProduct", { user: signedUser })
     } else {
         res.render("addProduct", { user: signedUser })
     }
-})
+});
 app.post("/addProduct", upload.single("image"), function (req, res) {
     const obj = new Product({
         name: req.body.name,
@@ -185,7 +202,7 @@ app.post("/addProduct", upload.single("image"), function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect("/main");
+            res.redirect("/main"); //////////////////////////////////////////////////////////////////////go to add product insteed  //// can i redirect with parmeters??
         }
     });
 });
@@ -193,19 +210,23 @@ app.post("/addProduct", upload.single("image"), function (req, res) {
 
 
 //productPage
-app.get("/productPage", (req, res) => {
-    if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
-    } else {
-        res.render("productPage", { user: signedUser });
-    }
-})
+app.get("/productPage", (req, res) => {///////by default there is no one can reach this route except by writing this route in browser's search bar
+    signedUser = defaultUser; ///the user will return default if come here.
+    console.log("You are signed out You need to Sign In Again!")
+    res.redirect("/");
+});
 
 app.post("/productPage", (req, res) => {
     if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
+        signedUser = defaultUser;
+        const productId = req.body.productId;
+        Product.findOne({ _id: productId }, (err, item) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("ProductPage", { product: item, user: signedUser });
+            }
+        });
     } else {
         const productId = req.body.productId;
         // const catigoryId = req.body.product[1];  //we can use array or object to be passed
@@ -221,14 +242,22 @@ app.post("/productPage", (req, res) => {
 
 
 // catigories of products
-app.post("/catigory",(req,res) => {
-    if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
+app.post("/catigory", (req, res) => {
+    if (!signed) {   ///// we write all of this twice as the default user can not be assigned global.
+        signedUser = defaultUser;
+        const catigory1 = req.body.catigory1;
+        const catigory2 = req.body.catigory2;
+        Product.find({ catigory1: catigory1, catigory2: catigory2 }, function (err, items) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("main", { products: items, user: signedUser });
+            }
+        });
     } else {
         const catigory1 = req.body.catigory1;
         const catigory2 = req.body.catigory2;
-        Product.find({catigory1: catigory1 , catigory2: catigory2}, function(err,items){
+        Product.find({ catigory1: catigory1, catigory2: catigory2 }, function (err, items) {
             if (err) {
                 console.log(err);
             } else {
@@ -239,46 +268,61 @@ app.post("/catigory",(req,res) => {
 });
 
 
+//add to cart
+app.post("/addToCart", (req, res) => {
+    if (!signed) {
+        console.log("You need to Sign In first!");
+        res.redirect('/');
+    } else {
+        const page = req.body.page;
+        const productNumber = req.body.number;
+        const productId = req.body.id;
+        Product.findOne({ _id: productId }, (err1, foundProduct) => {
+            if (err1) {
+                console.log(err1);
+            } else {
+                let obj1 = {
+                    product: foundProduct,
+                    number: productNumber
+                }
+                User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } }, function (err2, item) { //the great function "findOneAndUpdate"
+                    if (err2) {
+                        console.log(err2);
+                    } else {
+                        console.log("product added to cart!");
+                        signedUser = item; //// remember we need to re assign variables ofter update the values in database
+                        res.render(page, { product: foundProduct, user: signedUser });
+                        // console.log("The Cart of the User after update ", signedUser.cart); //// also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassig it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                    }
+                });
+            }
+        });
+    }
+});
 
 // Cart
 app.get("/cart", function (req, res) {
-    res.render("cart",{user: signedUser})
-})
-
-
-//add to cart
-app.post("/addToCart", (req, res) => {
-    const page = req.body.page;
-    const productNumber = req.body.number;
-    const productId = req.body.id;
-    Product.findOne({_id:productId},(err1,foundProduct) => {
-        if(err1){
-            console.log(err1);
-        }else{
-            let obj1 = {
-                product: foundProduct,
-                number: productNumber
+    if (!signed) {
+        signedUser = defaultUser;
+        res.render("cart", { user: signedUser });
+    } else {
+        User.findOne({ _id: signedUser._id }, function (err, foundUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                signedUser = foundUser;
+                res.render("cart", { user: signedUser });
             }
-            User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } } , function (err2,item) {
-                if (err2) {
-                    console.log(err2);
-                } else {
-                    console.log("product added to cart!");
-                    console.log(signedUser.cart);
-                    res.render(page, { product: foundProduct, user: signedUser });
-                }
-            });
-        }
-    });
-    
+        });
+    }
 });
 
 
 //Personal Profile
 app.get("/profile", function (req, res) {
     if (!signed) {
-        console.log("You need to Sign In first!")
-        res.redirect("/");
+        signedUser = defaultUser;
+        res.render("PersonalProfile", { user: signedUser })
     } else {
         res.render("PersonalProfile", { user: signedUser })
     }
