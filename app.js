@@ -48,10 +48,13 @@ app.get("/main", (req, res) => {
         });
     }else {
         Product.find({}, function (err, items) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render("main", { products: items, user: signedUser });
+            if (err) { console.log(err); } else {
+                User.findOne({_id : signedUser._id} , (err1,foundUser) => {
+                    if(!err1){
+                        signedUser = foundUser;
+                        res.render("main", { products: items, user: signedUser });
+                    }
+                });
             }
         });
     }
@@ -290,9 +293,12 @@ app.post("/addToCart", (req, res) => {
                         console.log(err2);
                     } else {
                         console.log("product added to cart!");
-                        signedUser = item; //// remember we need to re assign variables ofter update the values in database
-                        res.render(page, { product: foundProduct, user: signedUser });
-                        // console.log("The Cart of the User after update ", signedUser.cart); //// also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassig it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                        signedUser = item; //// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                        if(page == 'main'){
+                            res.redirect('/main')
+                        }else{
+                            res.render(page, { product: foundProduct, user: signedUser });
+                        }
                     }
                 });
             }
@@ -316,6 +322,32 @@ app.get("/cart", function (req, res) {
         });
     }
 });
+
+app.post('/removeFromCart',function(req,res){
+    const itemId = req.body.itemId;
+    User.updateOne({_id : signedUser._id} , {$pull : {cart : {_id : itemId} } } , (err) =>{
+        if(err){ console.log(err) } else{
+            console.log("The product is removed from the cart");
+            res.redirect('/cart');
+        }
+    });
+});
+
+app.get('/checkOut',function(req,res){
+    User.updateOne({_id : signedUser._id} , {$set : {cart : [] }} , (err) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log("All product are checked out")
+            res.redirect('/cart');
+        }
+    })
+});
+
+
+// db.demo541.update({ _id: ObjectId("5e8ca845ef4dcbee04fbbc11") },
+//   { $pull: { 'software.services': "yahoo" }}
+// );
 
 
 //Personal Profile

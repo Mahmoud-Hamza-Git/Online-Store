@@ -23,12 +23,10 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-center" id="nvbCollapse">
                             <ul class="navbar-nav ">
-                                <a class="nav-link ml-4" href="#"></i>Home</a>
-                                <a class="nav-link ml-4" href="#"></i>Trend</a>
-                                <a class="nav-link ml-4" href="#"></i>Best Price</a>
-                                <a class="nav-link ml-4" href="#"></i>Offers</a>
-                                <a class="nav-link ml-4" href="#"></i>Pages</a>
-                                <a class="nav-link ml-4" href="#"></i>Groups</a>
+                                <a class="nav-link ml-4" href="/main"></i>Home</a>
+                                <a class="nav-link ml-4" href="/main"></i>Trend</a>
+                                <a class="nav-link ml-4" href="/main"></i>Best Price</a>
+                                <a class="nav-link ml-4" href="/main"></i>Offers</a>
                             </ul>
                         </div>
                     </div>
@@ -44,70 +42,73 @@
                             <h3 class="text-success">The cart is empty</h3>
                         </div>
                     <% }else { %>
-                        <% user.cart.forEach( element=> { %>
-                            <div class="col mb-3 cartproducts border py-3">
-                                <div class="d-flex">
+                        <% user.cart.forEach( item=> { %>
+                            <form action="/removeFromCart" method="post" id="<%= item._id %>">
+                                <div class="col mb-3 cartproducts border py-3">
                                     <div class="d-flex">
-                                        <div><img
-                                                src="data:image/<%= element.product.img.contentType %>;base64,<%= element.product.img.data.toString('base64') %>"
-                                                alt="imageproduct" class="imageproduct"></div>
-                                        <div class="ml-4">
-                                            <p class="h3 ml-3">
-                                                <%= element.product.name %>
-                                            </p>
-                                            <p class="h5 ml-3">
-                                                <%= element.product.s_description %>
-                                            </p>
-                                            <p class="h4 ml-3">$ <%= element.product.price %>
-                                            </p>
-                                            <a href="#" class="text-success ml-3">Remove</a>
+                                        <div class="d-flex">
+                                            <div><img
+                                                    src="data:image/<%= item.product.img.contentType %>;base64,<%= item.product.img.data.toString('base64') %>"
+                                                    alt="imageproduct" class="imageproduct"></div>
+                                            <div class="ml-4">
+                                                <p class="h3 ml-3">
+                                                    <%= item.product.name %>
+                                                </p>
+                                                <p class="h5 ml-3">
+                                                    <%= item.product.s_description %>
+                                                </p>
+                                                <p class="h4 ml-3">$ <%= item.product.price %>
+                                                </p>
+                                                <a href="#" onclick="$('#<%= item._id %>').submit()" class="text-success ml-3">Remove</a>
+                                                <input type="hidden" name="itemId" value="<%= item._id %>">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex ml-5">
-                                        <p class="h4">Quantity:</p>
-                                        <div class="smallBox ml-4">
-                                            <%= element.number %>
+                                        <div class="d-flex ml-5">
+                                            <p class="h4">Quantity:</p>
+                                            <div class="smallBox ml-4">
+                                                <%= item.number %>
+                                            </div>
+                                            <!-- <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center"
+                                            value="1"> -->
                                         </div>
-                                        <!-- <input type="number" class="form-control border w-25 ml-3 py-1 px-1 text-center"
-                                        value="1"> -->
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         <% }); %>
                     <% } %>
                 </div>
-                <div class="col col-lg-3 mx-lg-5 border checkout pt-3" style="height: fit-content;">
+                <div class="col col-lg-3 mx-lg-5 border checkout pt-3" style="height: fit-content; width: fit-content;">
                     <p class="h3">Information</p>
                     <div class="d-flex mt-1">
-                        <label for="firstName" name="fname" class="form-label col-4">First name</label>
-                        <label for="firstName" name="fname" class="form-label col-8">
+                        <label for="fname" class="form-label col-4">First name</label>
+                        <p name="fname" class="form-label col-8">
                             <%= user.fname %>
-                        </label>
+                        </p>
                     </div>
                     <div class="d-flex mt-1">
-                        <label name="lname" class="form-label col-4">Last name</label>
-                        <label name="lname" class="form-label col-8">
+                        <label for="lname" class="form-label col-4">Last name</label>
+                        <p name="lname" class="form-label col-8">
                             <%= user.fname %>
-                        </label>
+                        </p>
                     </div>
                     <div class="d-flex mt-1">
-                        <label name="Email" class="form-label col-4">Email Address</label>
-                        <label name="Email" class="form-label col-8">
+                        <label for="Email" class="form-label col-4">Email Address</label>
+                        <p name="Email" class="form-label col-8">
                             <%= user.email %>
-                        </label>
+                        </p>
                     </div>
                     <div class="d-flex mt-1">
-                        <label name="phoneNumber" class="form-label col-4">Phone Number</label>
-                        <label name="phoneNumber" class="form-label col-8">
+                        <label for="phoneNumber" class="form-label col-4">Phone Number</label>
+                        <p name="phoneNumber" class="form-label col-8">
                             <%= user.phoneNumber %>
-                        </label>
+                        </p>
                     </div>
                     <hr>
                     <div class="address d-flex">
                         <p class="h5">Address</p>
-                        <label for="firstName" name="fname" class="form-label col-8">
+                        <p name="fname" class="form-label col-8">
                             <%= user.address.country %> - <%= user.address.state %> - <%= user.address.street %>
-                        </label>
+                        </p>
                     </div>
                     <hr>
                     <div class="payment">
@@ -123,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success col py-3 my-3 btncheckout">Continue to checkout</button>
+                    <a href="/checkOut" class="btn btn-success col py-3 my-3 btncheckout">Continue to checkout</a>
                 </div>
             </div>
 
