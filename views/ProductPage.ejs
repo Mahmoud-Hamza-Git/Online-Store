@@ -74,7 +74,7 @@
                             <form action="/addToCart" method="post" id="addToCart">
                                 <div class="row btnonhoverproductbox my-5">
                                     <input type="number" name="number" class="form-control border col-2 mx-4 cartnum"
-                                        placeholder="0" required>
+                                        placeholder="1" value="1" required>
                                     <input type="hidden" name="page" value="productPage">
                                     <input type="hidden" name="id" value="<%= product._id %>">
                                     <button onclick="$('#addToCart').submit()" class="btn btn-success col-4 rounded">ADD TO CART</button>
