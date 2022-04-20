@@ -122,7 +122,7 @@ const users = [defaultUser , admin1];
 // save the default user in database if not exist.
 User.find({}, function (err, foundList) {
     if (!err && foundList.length == 0) {
-        User.insertMany({users} , (err1) => {
+        User.insertMany(users, (err1) => {
             if(!err1){
                 console.log("Default users are saved in database")
             }
