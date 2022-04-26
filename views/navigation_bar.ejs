@@ -97,10 +97,12 @@
     <!-- top navbar -->
     <!-- Search input  -->
     <div class=" containersearch">
-        <div class="input-group mb-3 px-5 mt-4">
-            <input type="text" class="form-control searchinput" placeholder="Searching..">
-            <button class="btn btn-success col-2 searchbtn" type="submit"><i class="bi bi-search"></i></button>
-        </div>
+        <form action="/search" method="post" id="searchBar">
+            <div class="input-group mb-3 px-5 mt-4">
+                <input value="" name="searchWord" type="text" class="form-control searchinput" placeholder="Searching..">
+                <button class="btn btn-success col-2 searchbtn" type="submit" onclick="$('#searchBar').submit()"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
     </div>
 
     <!-- dropdown menu  -->

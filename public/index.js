@@ -20,6 +20,11 @@
 //    $("#sidebartoggle").toggleClass("shrink");
 // });
 
+
+
+
+
+
 const catigories = {Phones:['Samsung','Huawei','Apple'],Books:['Historical','Novels','Fiction'],Clothes:['Kids','Women','Men'] }
 function myFunction(){
    $('.choiceOption').remove();
@@ -29,5 +34,16 @@ function myFunction(){
    });
 }
 
-// const x = null;
-// console.log(x.toString('base64'));
+// function search(){
+//    let searchWord = $('searchBar').val();
+
+//    $.ajax({
+//       URL: '/search',
+//       contentType: 'application/json',
+//       data: JSON.stringify({searchWord: searchWord}),
+//       success: function(){
+//          console.log(searchWord,"success")
+//       }
+//    })
+// }
+

@@ -11,6 +11,8 @@
   border-radius: 20px;
   display: block;
   margin: 10px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product_image{
   width: 100%;

@@ -334,7 +334,20 @@ app.get("/profile", function (req, res) {
 
 // Edit payment
 
-
+app.post('/search', (req, res) => {
+    let searchWord = req.body.searchWord.toLowerCase();
+    let result = [];
+    Product.find(function (err, products) {
+        if (!err) {
+            for (item of products) {
+                if (item.name.toLowerCase().match(searchWord) != null) {
+                    result.push(item);
+                }
+            }
+        }
+        res.render("main", { products: result, user: signedUser });
+    });
+})
 
 
 
