@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const multer = require("multer");
-const { isRequired } = require("nodemon/lib/utils");
 const md5 = require("md5");
+
+
 
 //set up multer to upload files
 const storage = multer.diskStorage({
@@ -15,6 +16,8 @@ const storage = multer.diskStorage({
 module.exports.upload = multer({ storage: storage });
 
 
+
+
 //creating schemas
 const Products_Schema = {
     name: String,
@@ -26,7 +29,20 @@ const Products_Schema = {
     img: {
         data: Buffer,
         contentType: String
+    },
+    count:{
+        type:Number,
+        default:0
     }
+}
+
+const inventory_Schema = {
+    products:[Products_Schema],
+    cash:{
+        type:Number,
+        default:0
+    }
+
 }
 
 const userSchema = {
@@ -53,7 +69,8 @@ const userSchema = {
         cardNumber: String,
         expiration: String,
         cvv: String
-    }]
+    }],
+    products:[ {product:Products_Schema,count:Number} ]
 };
 
 
@@ -133,6 +150,7 @@ User.find({}, function (err, foundList) {
 module.exports.Product = Product;
 module.exports.User = User;
 module.exports.defaultUser = defaultUser;
+
 
 
 

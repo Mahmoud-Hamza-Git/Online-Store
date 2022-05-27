@@ -4,12 +4,11 @@
   "description": "This is an online store project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "Tag-Team",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.2",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "md5": "^2.3.0",
