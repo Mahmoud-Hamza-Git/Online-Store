@@ -2,39 +2,33 @@
 const md5 = require("md5");
 const fs = require("fs");
 const path = require("path")
-const schema = require("../models/schema");
+const { User, Product, defaultUser } = require("../models/schema");
+
 
 // globals
-const User = schema.User;
-const Product = schema.Product;
-const defaultUser = schema.defaultUser;
 var signedUser = defaultUser;
 var signed = false;
 
 
 
 function getSignIn (req,res){
-    if (!signed) {
         // res.render('loading');   // try later using looding page in the start of the website.
-        res.render("signIn", { user: signedUser });
-    } else {
-        res.render("signIn", { user: signedUser });  ///have to had a way to get back to the sign in,sign up and home page while iam signed//////////////
-    }
+        res.render("signIn", { user: signedUser }); 
 }
 
 function postSignIn (req,res){
     const email = req.body.email;
     const password = md5(req.body.password);
-    User.findOne( { email: email } , (err, item) => {
+    User.findOne( { email: email } , (err, found_user) => {
         if (err) {
             console.log(err);
-        } else if (item == null) {
+        } else if (found_user == null) {
             console.log("this email is not existed")
         }
         else {
-            if (item.password == password) {
+            if (found_user.password == password) {
                 signed = true;
-                signedUser = item;
+                signedUser = found_user;
                 res.redirect("/main");
             } else {
                 console.log("the password is wrong!")
@@ -50,12 +44,8 @@ const states = ["Cairo", "Alexandria", "Giza", "Tanta"];
 countries.sort();
 states.sort();
 
-function getSignUp (req, res){
-    if (!signed) {
-        res.render("signUp", { countries: countries, states: states, user: signedUser });
-    } else {
-        res.render("signUp", { countries: countries, states: states, user: signedUser });
-    }
+function getSignUp (req, res){ 
+    res.render("signUp", { countries: countries, states: states, user: signedUser });
 }
 
 function postSignUp (req, res){
@@ -98,12 +88,12 @@ function postSignUp (req, res){
                     if (err1) {
                         console.log(err1);
                     } else {
-                        User.findOne({ email: email, password: md5(password) }, (err2, item) => {
+                        User.findOne({ email: email, password: md5(password) }, (err2, found_user) => {
                             if (err2) {
                                 console.log(err2);
                             } else {
                                 signed = true;
-                                signedUser = item;
+                                signedUser = found_user;
                                 res.redirect("/main");
                             }
                         });
@@ -125,18 +115,18 @@ function signOut (req, res){ ///it's easier to make get request in html file,and
 //Main route
 function main (req, res){
     if (!signed) {
-        Product.find({}, function (err, items) {
+        Product.find({}, function (err, found_items) {
             if (!err) {
-                res.render("main", { products: items, user: signedUser });
+                res.render("main", { products: found_items, user: signedUser });
             }
         });
     } else {
-        Product.find({}, function (err, items) {
+        Product.find({}, function (err, found_items) {
             if (err) { console.log(err); } else {
                 User.findOne({ _id: signedUser._id }, (err1, foundUser) => {
                     if (!err1) {
                         signedUser = foundUser;
-                        res.render("main", { products: items, user: signedUser });
+                        res.render("main", { products: found_items, user: signedUser });
                     }
                 });
             }
@@ -160,7 +150,8 @@ function postAddProduct (req, res){
         img: {
             data: fs.readFileSync(path.join(__dirname + "/../uploads/" + req.file.filename)),
             contentType: 'image/png'
-        }
+        },
+        number_of_pieces: req.body.pieces
     })
     obj.save((err) => {
         if (err) {
@@ -176,22 +167,16 @@ function postAddProduct (req, res){
 //productPage
 function productPage (req, res){
     if (!signed) {
-        const productId = req.body.productId;
-        Product.findOne({ _id: productId }, (err, item) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render("ProductPage", { product: item, user: signedUser });
-            }
-        });
+        console.log("You need to Sign In first!");
+        res.redirect('/');
     } else {
         const productId = req.body.productId;
         // const catigoryId = req.body.product[1];  //we can use array or object to be passed
-        Product.findOne({ _id: productId }, (err, item) => {
+        Product.findOne({ _id: productId }, (err, found_product) => {
             if (err) {
                 console.log(err);
             } else {
-                res.render("ProductPage", { product: item, user: signedUser });
+                res.render("ProductPage", { product: found_product, user: signedUser });
             }
         });
     }
@@ -202,11 +187,11 @@ function productPage (req, res){
 function catigory (req, res){
     const catigory1 = req.body.catigory1;
     const catigory2 = req.body.catigory2;
-    Product.find({ catigory1: catigory1, catigory2: catigory2 }, function (err, items) {
+    Product.find({ catigory1: catigory1, catigory2: catigory2 }, function (err, found_items) {
         if (err) {
             console.log(err);
         } else {
-            res.render("main", { products: items, user: signedUser });
+            res.render("main", { products: found_items, user: signedUser });
         }
     });
 }
@@ -229,12 +214,12 @@ function addToCart (req, res){
                     product: foundProduct,
                     number: productNumber
                 }
-                User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } }, function (err2, item) { //the great function "findOneAndUpdate"
+                User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } }, function (err2, found_user) { //the great function "findOneAndUpdate"
                     if (err2) {
                         console.log(err2);
                     } else {
                         console.log("product added to cart!");
-                        signedUser = item; //// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                        signedUser = found_user; //// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
                         if (page == 'main') {
                             res.redirect('/main')
                         } else {
@@ -250,7 +235,8 @@ function addToCart (req, res){
 // Cart
 function cart (req, res){
     if (!signed) {
-        res.render("cart", { user: signedUser });
+        console.log("You need to Sign In first!")
+        res.redirect('/')
     } else {
         User.findOne({ _id: signedUser._id }, function (err, foundUser) { // we find the user to stay updated if the cart changed or not.
             if (err) {

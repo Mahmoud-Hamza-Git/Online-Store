@@ -9,6 +9,7 @@
   "author": "Tag-Team",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "md5": "^2.3.0",

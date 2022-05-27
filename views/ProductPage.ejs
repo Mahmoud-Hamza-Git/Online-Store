@@ -1,6 +1,8 @@
 <%- include("header.ejs") -%>
     <link rel="stylesheet" href="css/MainCssFiles.css">
     <link rel="stylesheet" href="css/ProductPage.css">
+    <link rel="stylesheet" href="css/customStyle.css">
+
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">    -->
     <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
@@ -66,20 +68,23 @@
                                 <span class="bi bi-star"></span>
                                 <span class="bi bi-star"></span>
                             </div>
-                            <h6 class="price my-5"><%= product.price %> $</h6>
-                            <!-- <div class="addfavorite row">
-                                <i class="bi bi-heart-fill"></i>
-                                <p class="h4">Add to favorite</p>
-                            </div> -->
+
+                            <h6 class="price my-5" ><%= product.price %> $</h6>
+
+                            <label class="price">Number Of Pieces</label> 
+                            <label class="smallBox ml-4" id="number_of_pieces_available"><%= product.number_of_pieces %></label>
+                           
                             <form action="/addToCart" method="post" id="addToCart">
                                 <div class="row btnonhoverproductbox my-5">
                                     <input type="number" name="number" class="form-control border col-2 mx-4 cartnum"
-                                        placeholder="1" value="1" required>
+                                         id="number_of_pieces_ordered" value="1" required>
                                     <input type="hidden" name="page" value="productPage">
                                     <input type="hidden" name="id" value="<%= product._id %>">
-                                    <button onclick="$('#addToCart').submit()" class="btn btn-success col-4 rounded">ADD TO CART</button>
+                                    <button onclick="addToCart(event)" class="btn btn-success col-4 rounded">ADD TO CART</button>
                                 </div>
                             </form>
+                            <label class="err_msg hidden ml-4">There is no enough pieces of product</label>
+
                             <div class="shareproduct">
                                 <p class="h4 mt-4">Share this Product</p>
                                 <div class="socialIconShare">
@@ -99,8 +104,6 @@
                     <ul class="nav-menu">
                         <li class="nav-item"><a data-scroll="OverView" href="#OverView"
                                 class="dot active nav-link active" data-toggle="tab"><span>OverView</span></a></li>
-                        <!-- <li class="nav-item"><a data-scroll="Specifications" href="#Specifications" class="dot nav-link"
-                                data-toggle="tab"><span>Specifications</span></a></li> -->
                         <li class="nav-item"><a data-scroll="Rating" href="#Rating" class="dot nav-link"
                                 data-toggle="tab"><span>Rating</span></a></li>
                     </ul>
@@ -108,113 +111,12 @@
                 <!-- End Nav Section -->
                 <!-- Start Home Section -->
                 <section id="OverView" class="section" style="min-height: 100px;">
-                    <!-- <p class="h2">Hightlight</p>
-                    <ul class="ml-5">
-                        <li>Add Hightlight for the product</li>
-                        <li>Add Hightlight for the product</li>
-                        <li>Add Hightlight for the product</li>
-                        <li>Add Hightlight for the product</li>
-                    </ul> -->
                     <p class="h2">Overview</p>
                     <p><%= product.l_description %></p>
                 </section>
-                <!-- <section id="Specifications" class="section">
-                    <p class="h2">Specifications</p>
-                    <div class="row mt-4 rowcolor specright">
-                        <div class="col-2">
-                            <div class="">
-                                <p class="h5">Speacial Features</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="col-5">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row specright">
-                        <div class="col-2">
-                            <div class="">
-                                <p class="h5">Brand Compatibility</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="col-5">
-                                <p class="h5">Color</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row rowcolor specright">
-                        <div class="col-2">
-                            <div class="">
-                                <p class="h5">Model Number</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="col-5">
-                                <p class="h5">Company</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row specright">
-                        <div class="col-2">
-                            <div class="">
-                                <p class="h5">Model Name</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="col-5">
-                                <p class="h5">Edition</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="">
-                                <p class="h5">Material</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </section> -->
+                
                 <hr>
                 <Section class="section" id="Rating">
-                    <!-- <p class="h3">HAVE A QUESTION ?</p>
-                    <input type="text" placeholder="Write your question" class="form-control border w-75"> -->
-                    
 
                     <p class="h4 ml-3">Rate this Product</p>
                     <div class="rate">
@@ -292,6 +194,7 @@
 
                 <%- include("footer.ejs") -%>
                     <script type='text/Javascript' src="searching.js"></script>
+                    <script type='text/Javascript' src="productPage.js"></script>
     </body>
 
     </html>

@@ -1,25 +1,10 @@
 const mongoose = require("mongoose");
-const multer = require("multer");
 const md5 = require("md5");
 
 
 
-//set up multer to upload files
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now());
-    }
-});
-module.exports.upload = multer({ storage: storage });
-
-
-
-
-//creating schemas
-const Products_Schema = {
+// Creating Schemas
+const Product_Schema = {
     name: String,
     price: Number,
     s_description: String,
@@ -30,14 +15,14 @@ const Products_Schema = {
         data: Buffer,
         contentType: String
     },
-    count:{
+    number_of_pieces:{
         type:Number,
         default:0
     }
 }
 
-const inventory_Schema = {
-    products:[Products_Schema],
+const Inventory_Schema = {
+    products:[String],
     cash:{
         type:Number,
         default:0
@@ -56,7 +41,7 @@ const userSchema = {
         data: Buffer,
         contentType: String
     },
-    cart: [{ product: Products_Schema, number: Number }],
+    cart: [{ product: Product_Schema, number: Number }],
     address: {
         country: String,
         state: String,
@@ -70,13 +55,13 @@ const userSchema = {
         expiration: String,
         cvv: String
     }],
-    products:[ {product:Products_Schema,count:Number} ]
+    products:[ {product:Product_Schema, count:Number} ]
 };
 
 
 //creating models(collections)
 const User = mongoose.model("User", userSchema);
-const Product = mongoose.model("Product", Products_Schema);
+const Product = mongoose.model("Product", Product_Schema);
 
 
 
