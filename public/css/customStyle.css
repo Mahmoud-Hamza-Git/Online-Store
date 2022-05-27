@@ -54,6 +54,13 @@
   padding: 5px 50px;
   border-radius: 10px;
 }
+.success_msg{
+  text-align: center;
+  background-color: #129f0fbb;
+  color: #fff;
+  padding: 5px 50px;
+  border-radius: 10px;
+}
 
 .hidden{
   display: none;

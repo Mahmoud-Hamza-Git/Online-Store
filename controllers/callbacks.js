@@ -151,7 +151,7 @@ function postAddProduct (req, res){
             data: fs.readFileSync(path.join(__dirname + "/../uploads/" + req.file.filename)),
             contentType: 'image/png'
         },
-        number_of_pieces: req.body.pieces
+        pieces_available: req.body.pieces
     })
     obj.save((err) => {
         if (err) {
@@ -206,7 +206,8 @@ function addToCart (req, res){
         const page = req.body.page;
         const productNumber = req.body.number;
         const productId = req.body.id;
-        Product.findOne({ _id: productId }, (err1, foundProduct) => {
+        const pieces_available = req.body.pieces_available;
+        Product.findOneAndUpdate({ _id: productId }, { pieces_available: pieces_available} , {new: true , runValidator: true} ,(err1, foundProduct) => {
             if (err1) {
                 console.log(err1);
             } else {
@@ -218,8 +219,7 @@ function addToCart (req, res){
                     if (err2) {
                         console.log(err2);
                     } else {
-                        console.log("product added to cart!");
-                        signedUser = found_user; //// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                        signedUser = found_user; ///// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
                         if (page == 'main') {
                             res.redirect('/main')
                         } else {
@@ -260,12 +260,21 @@ function removeFromCart (req, res){
 }
 
 function checkOut (req, res){
-    User.updateOne({ _id: signedUser._id }, { $set: { cart: [] } }, (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("All product are checked out")
-            res.redirect('/cart');
+    const {total_price} = req.body;
+    //add price to inventory cash 
+    User.findOneAndUpdate({ _id: signedUser._id }, { $set: { cart: [] } }, (err,found_user) => {
+        if (!err){
+            var purchased_items = found_user.cart
+            var new_obj = {
+                products:purchased_items
+            }
+            User.updateOne( {_id: signedUser._id} , { $push: {history : new_obj} } ,(err)=>{
+                if(!err){
+                    console.log("All product are checked out")
+                    res.redirect('/cart');
+                }
+            })  
+            
         }
     })
 }

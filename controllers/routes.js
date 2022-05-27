@@ -54,11 +54,11 @@ router.route("/catigory").post(catigory)
 
 router.route("/addToCart").post( addToCart )
 
-router.route('/cart').get( cart )
+router.route('/cart').get( cart ) //
+
+router.route('/checkOut').post( checkOut ) //
 
 router.route('/removeFromCart').post( removeFromCart )
-
-router.route('/checkOut').get( checkOut )
 
 router.route("/profile").get( profile )
 

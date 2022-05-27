@@ -15,19 +15,17 @@ const Product_Schema = {
         data: Buffer,
         contentType: String
     },
-    number_of_pieces:{
+    pieces_available:{
         type:Number,
         default:0
     }
 }
 
 const Inventory_Schema = {
-    products:[String],
     cash:{
         type:Number,
         default:0
     }
-
 }
 
 const userSchema = {
@@ -42,6 +40,19 @@ const userSchema = {
         contentType: String
     },
     cart: [{ product: Product_Schema, number: Number }],
+    history:[
+        {   
+            date: {
+                type:Date,
+                default:Date.now()
+            },
+            products:{
+                type:[{product: Product_Schema, number: Number}],
+                default:[]
+            }
+            
+        }
+    ],
     address: {
         country: String,
         state: String,
@@ -62,6 +73,7 @@ const userSchema = {
 //creating models(collections)
 const User = mongoose.model("User", userSchema);
 const Product = mongoose.model("Product", Product_Schema);
+const Inventory = mongoose.model("Inventory", Inventory_Schema);
 
 
 
@@ -134,6 +146,7 @@ User.find({}, function (err, foundList) {
 
 module.exports.Product = Product;
 module.exports.User = User;
+module.exports.Inventory = Inventory;
 module.exports.defaultUser = defaultUser;
 
 

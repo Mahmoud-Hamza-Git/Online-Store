@@ -72,7 +72,7 @@
                             <h6 class="price my-5" ><%= product.price %> $</h6>
 
                             <label class="price">Number Of Pieces</label> 
-                            <label class="smallBox ml-4" id="number_of_pieces_available"><%= product.number_of_pieces %></label>
+                            <label class="smallBox ml-4" id="number_of_pieces_available"><%= product.pieces_available %></label>
                            
                             <form action="/addToCart" method="post" id="addToCart">
                                 <div class="row btnonhoverproductbox my-5">
@@ -80,10 +80,13 @@
                                          id="number_of_pieces_ordered" value="1" required>
                                     <input type="hidden" name="page" value="productPage">
                                     <input type="hidden" name="id" value="<%= product._id %>">
+                                    <input type="hidden" name="pieces_available" id="pieces_available_after" value="">
                                     <button onclick="addToCart(event)" class="btn btn-success col-4 rounded">ADD TO CART</button>
                                 </div>
                             </form>
+
                             <label class="err_msg hidden ml-4">There is no enough pieces of product</label>
+                            <label class="success_msg hidden ml-4">Products Added to your cart</label>
 
                             <div class="shareproduct">
                                 <p class="h4 mt-4">Share this Product</p>
