@@ -18,7 +18,7 @@ const {
     removeFromCart,
     checkOut,
     profile,
-    statics,
+    inventory,
     searchFunc
 
 } = require ('./callbacks');
@@ -64,7 +64,7 @@ router.route("/profile").get( profile )
 
 router.route('/search').post( searchFunc )
 
-router.route('/statics').get( statics )
+router.route('/inventory').get( inventory )
 
 
 module.exports = router;

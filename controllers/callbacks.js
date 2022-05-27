@@ -2,7 +2,7 @@
 const md5 = require("md5");
 const fs = require("fs");
 const path = require("path")
-const { User, Product, defaultUser } = require("../models/schema");
+const { User, Product, defaultUser, Inventory } = require("../models/schema");
 
 
 // globals
@@ -199,37 +199,32 @@ function catigory (req, res){
 
 //add to cart
 function addToCart (req, res){
-    if (!signed) {
-        console.log("You need to Sign In first!");
-        res.redirect('/');
-    } else {
-        const page = req.body.page;
-        const productNumber = req.body.number;
-        const productId = req.body.id;
-        const pieces_available = req.body.pieces_available;
-        Product.findOneAndUpdate({ _id: productId }, { pieces_available: pieces_available} , {new: true , runValidator: true} ,(err1, foundProduct) => {
-            if (err1) {
-                console.log(err1);
-            } else {
-                let obj1 = {
-                    product: foundProduct,
-                    number: productNumber
-                }
-                User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } }, function (err2, found_user) { //the great function "findOneAndUpdate"
-                    if (err2) {
-                        console.log(err2);
-                    } else {
-                        signedUser = found_user; ///// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
-                        if (page == 'main') {
-                            res.redirect('/main')
-                        } else {
-                            res.render(page, { product: foundProduct, user: signedUser });
-                        }
-                    }
-                });
+    const page = req.body.page;
+    const productNumber = req.body.number;
+    const productId = req.body.id;
+    const pieces_available = req.body.pieces_available;
+    Product.findOneAndUpdate({ _id: productId }, { pieces_available: pieces_available} , {new: true , runValidator: true} ,(err1, foundProduct) => {
+        if (err1) {
+            console.log(err1);
+        } else {
+            let obj1 = {
+                product: foundProduct,
+                number: productNumber
             }
-        });
-    }
+            User.findOneAndUpdate({ _id: signedUser._id }, { $push: { cart: obj1 } }, function (err2, found_user) { //the great function "findOneAndUpdate"
+                if (err2) {
+                    console.log(err2);
+                } else {
+                    signedUser = found_user; ///// remember we need to re assign variables ofter update the values in database, also notice that the 'item' found is the user before update so the cart will not include the last product added, so you need to reassign it in the get('/cart') function before it views the products, so the current assign is useless but keep it to remeber what was the problem.
+                    if (page == 'main') {
+                        res.redirect('/main')
+                    } else {
+                        res.render(page, { product: foundProduct, user: signedUser });
+                    }
+                }
+            });
+        }
+    });
 }
 
 // Cart
@@ -261,7 +256,13 @@ function removeFromCart (req, res){
 
 function checkOut (req, res){
     const {total_price} = req.body;
-    //add price to inventory cash 
+    console.log("total_price :", total_price)
+    Inventory.findOne({}, (err,foundinventory)=>{
+        const id = foundinventory._id
+        Inventory.updateOne( {_id : id} , {$inc: {cash: total_price } } , (err)=>{
+            console.log("incremented")
+        })
+    })
     User.findOneAndUpdate({ _id: signedUser._id }, { $set: { cart: [] } }, (err,found_user) => {
         if (!err){
             var purchased_items = found_user.cart
@@ -283,7 +284,12 @@ function checkOut (req, res){
 
 //Personal Profile
 function profile (req, res){
-    res.render("PersonalProfile", { user: signedUser })
+    if(!signed){
+        console.log("You need to Sign In first!")
+        res.redirect('/')
+    }else{
+        res.render("PersonalProfile", { user: signedUser })
+    }
 }
 
 
@@ -303,8 +309,28 @@ function searchFunc (req, res){
 }
 
 
-function statics (req, res){
-    res.render('staics')
+function inventory (req, res){
+    if(!signed){
+        console.log("You need to Sign In first!")
+        res.redirect('/')
+    }else{
+        Product.find({} , (err,found_items)=>{
+            if(!err){
+                Inventory.findOne({} , (err, found_inventory)=>{
+                    if(!err){
+                        let inventory = found_inventory
+                        let cash;
+                        if(typeof inventory == "undefined"){
+                            cash = 0
+                        }else{
+                            cash = inventory.cash
+                        }
+                        res.render('inventory', { products: found_items ,  user: signedUser , cash: cash})
+                    }
+                })
+            }
+        })
+    }
 }
 
 
@@ -325,5 +351,5 @@ module.exports = {
     checkOut,
     profile,
     searchFunc,
-    statics
+    inventory
 }

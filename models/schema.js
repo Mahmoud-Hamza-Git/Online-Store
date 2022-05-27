@@ -143,6 +143,12 @@ User.find({}, function (err, foundList) {
         });
     }
 });
+Inventory.find({}, (err, found_inventories) =>{
+    if(!err && found_inventories.length == 0){
+        Inventory.insertMany({})
+    }
+})
+
 
 module.exports.Product = Product;
 module.exports.User = User;

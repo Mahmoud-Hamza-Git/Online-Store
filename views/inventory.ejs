@@ -1,0 +1,42 @@
+<%- include("header.ejs") -%>
+    <link rel="stylesheet" href="css/MainCssFiles.css">
+    <link rel="stylesheet" href="/css/customStyle.css">
+</head>
+
+<body id="body-pd">
+    <!-- Side bar -->
+    <%- include("navigation_bar.ejs") -%>
+
+    <h1 class="inventory_header">Total Cash</h1>
+    <h1 class="smallBox mb-5 " style="margin: auto;"><%= cash %></h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Available Pieces</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% var counter = 0%>
+            <% products.forEach(product => { %>
+                <% counter++ %>
+                <tr>
+                    <th scope="row"><%= counter %></th>
+                    <td><%= product.name %></td>
+                    <td><%= product.pieces_available %></td>
+                    <td><%= product.price %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <%- include("footer.ejs") -%>
+    <script type='text/Javascript' src="searching.js"></script>
+</body>
+
+</html>
