@@ -52,10 +52,6 @@ router.route('/addProduct').get( getAddProduct ).post(upload.single("image"), po
 
 router.route('/editProduct').post( editProduct )
 
-router.route('/editSingleProduct').post( editSingleProduct )
-
-router.route("/productPage").post( productPage )
-
 router.route("/catigory").post(catigory)
 
 router.route("/addToCart").post( addToCart )
@@ -71,6 +67,10 @@ router.route("/profile").get( profile )
 router.route('/search').post( searchFunc )
 
 router.route('/inventory').get( inventory )
+
+router.route('/editSingleProduct'). post(upload.single("image"), editSingleProduct )
+
+router.route("/productPage").post( productPage )
 
 
 

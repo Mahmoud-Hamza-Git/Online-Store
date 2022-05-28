@@ -33,7 +33,7 @@
                     <div class="col col-lg-8 border py-5 ">
                         <p class="h3 text-muted">Edit Product</p>
                         <!-- enctype="multipart/form-data" -->
-                        <form action="/editSingleProduct" method="POST" >
+                        <form action="/editSingleProduct" method="POST" enctype="multipart/form-data">
                             <div class="row g-3">
                                 <div class="">
                                     <p class="h5 ml-4">Drag and drop a file or select add Image</p>
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="file-upload-content">
-                                                <img class="product_image" src="data:image/<%= product.img.contentType %>;base64,<%= product.img.data.toString('base64') %>"> 
+                                                <img class="file-upload-image" src="#"/> 
                                                 <div class="image-title-wrap">
                                                     <span class="image-title">Uploaded Image</span>
                                                 </div>
@@ -68,7 +68,7 @@
                                 <div class="col-12 py-2">
                                     <label for="pieces" class="form-label">Number Of Pieces <span class="text-muted"></span></label>
                                     <input type="Number" class="form-control border" id="pieces" value="<%= product.pieces_available %>"
-                                        name="pieces" required>
+                                        name="pieces_available" required>
                                 </div>
                                 <div class="row col-12 py-2">
                                     <div class="col-md-5">

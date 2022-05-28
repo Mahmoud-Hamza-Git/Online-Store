@@ -152,7 +152,11 @@ function editProduct (req,res){
 
 function editSingleProduct (req,res){
     const id = req.body.id;
-    Product.updateOne({_id : id} , req.body ,(error)=>{
+    req.body.img = {
+        data: fs.readFileSync(path.join(__dirname + "/../uploads/" + req.file.filename)),
+        contentType: 'image/png'
+    }
+    Product.updateOne({_id : id} , req.body  ,(error)=>{
         res.redirect('/main')
     })
 }
@@ -235,7 +239,9 @@ function checkOut (req, res){
     
     Inventory.findOne({}, (error,foundinventory)=>{
         const id = foundinventory._id
-        Inventory.updateOne( {_id : id} , {$inc: {cash: total_price } })
+        Inventory.updateOne( {_id : id} , {$inc: {cash: total_price } }, (error)=>{
+            console.log("Checked out successfully...")
+        })
     })
 
     User.findOneAndUpdate({ _id: signedUser._id }, { $set: { cart: [] } }, (error,found_user) => {
