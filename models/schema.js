@@ -39,8 +39,8 @@ const userSchema = {
         data: Buffer,
         contentType: String
     },
-    cart: [{ product: Product_Schema, number: Number }],
-    history:[
+    cart: [ { product: Product_Schema, number: Number } ],
+    history:[ //array of all purchased products
         {   
             date: {
                 type:Date,
@@ -66,7 +66,6 @@ const userSchema = {
         expiration: String,
         cvv: String
     }],
-    products:[ {product:Product_Schema, count:Number} ]
 };
 
 

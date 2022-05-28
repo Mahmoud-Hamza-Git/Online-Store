@@ -1,19 +1,13 @@
 <%- include("partials/header.ejs") -%>
-    <link rel="stylesheet" href="css/MainCssFiles.css">
-    <!-- <link rel="stylesheet" href="../CSS files/ProductPage.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/MainCssFiles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="css/addProductSeller.css">
-    <!-- <link rel="stylesheet" href="../CSS files/HomePage.css">  -->
-    <!-- <link rel="stylesheet" href="../CSS files/Searching.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/addProductSeller.css">
     </head>
 
     <body id="body-pd">
         <!-- Side bar -->
         <%- include("partials/navigation_bar.ejs") -%>
 
-            <!-- Side Bar -->
-
-            <!--Container Main start-->
             <div class="nav-header ">
                 <!--- Navbar --->
                 <nav class="navbar navbar-expand-lg ">
@@ -34,14 +28,12 @@
                 </nav>
                 <!--# Navbar #-->
             </div>
-            <!--Container Main end-->
-            <!-- The Body of the page  -->
             <div class="container mt-3">
                 <div class="py-5">
                     <div class="col col-lg-8 border py-5 ">
-                        <p class="h3 text-muted">Add Product</p>
-                        <p>Start selling your your products on website</p>
-                        <form action="/addProduct" method="post" enctype="multipart/form-data">
+                        <p class="h3 text-muted">Edit Product</p>
+                        <!-- enctype="multipart/form-data" -->
+                        <form action="/editSingleProduct" method="POST" >
                             <div class="row g-3">
                                 <div class="">
                                     <p class="h5 ml-4">Drag and drop a file or select add Image</p>
@@ -55,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="file-upload-content">
-                                                <img class="file-upload-image" src="#"/>
+                                                <img class="product_image" src="data:image/<%= product.img.contentType %>;base64,<%= product.img.data.toString('base64') %>"> 
                                                 <div class="image-title-wrap">
                                                     <span class="image-title">Uploaded Image</span>
                                                 </div>
@@ -65,17 +57,17 @@
                                 </div>
                                 <div class="col-12 py-2">
                                     <label for="firstName" name="fname" required class="form-label">Product Name</label>
-                                    <input type="text" class="form-control border" id="firstName" name="name" required
-                                        autocomplete="off">
+                                    <input type="text" class="form-control border" id="firstName" name="name" 
+                                        value="<%= product.name %>" requiredautocomplete="off">
                                 </div>
                                 <div class="col-12 py-2">
                                     <label for="price" class="form-label">Price <span class="text-muted"></span></label>
-                                    <input type="Number" class="form-control border" id="price" placeholder="EG 0.00"
+                                    <input type="Number" class="form-control border" id="price" value="<%= product.price %>"
                                         name="price" required>
                                 </div>
                                 <div class="col-12 py-2">
                                     <label for="pieces" class="form-label">Number Of Pieces <span class="text-muted"></span></label>
-                                    <input type="Number" class="form-control border" id="pieces" placeholder="0"
+                                    <input type="Number" class="form-control border" id="pieces" value="<%= product.pieces_available %>"
                                         name="pieces" required>
                                 </div>
                                 <div class="row col-12 py-2">
@@ -100,11 +92,12 @@
                                     <label for="text" class="form-label">Add a brief description <span
                                             class="text-muted"></span></label>
                                     <textarea type="text" class="form-control border" name="s_description" id="desc"
-                                        placeholder="brief description" required></textarea>
+                                         required><%= product.s_description %></textarea>
                                 </div>
                                 <div class="col-12 py-2">
                                     <label for="text" class="form-label">Add full description <span class="text-muted"></span></label>
-                                    <textarea type="text" name="l_description" class="form-control border" cols="30" rows="7" id="fulldescription" placeholder="add full description" required></textarea>
+                                    <textarea type="text" name="l_description" class="form-control border" cols="30" rows="7" id="fulldescription" 
+                                         required><%= product.l_description %></textarea>
                                 </div>
                                 
                                 <div class="my-2">
@@ -123,7 +116,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="w-100 btn btn-success btn-lg mt-4" type="submit">Share Your Product</button>
+                            <input type="hidden" name="id" value="<%= product._id %>">
+                            <button class="w-100 btn btn-success btn-lg mt-4" type="submit">Edit Your Product</button>
                         </form>
                     </div>
                 </div>
@@ -134,4 +128,4 @@
                 <script type='text/Javascript' src="searching.js"></script>
     </body>
 
-    </html>
+</html>

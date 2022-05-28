@@ -11,6 +11,8 @@ const {
     main,
     getAddProduct,
     postAddProduct,
+    editProduct,
+    editSingleProduct,
     productPage,
     catigory,
     cart,
@@ -48,6 +50,10 @@ router.route('/main').get( main )
 
 router.route('/addProduct').get( getAddProduct ).post(upload.single("image"), postAddProduct )
 
+router.route('/editProduct').post( editProduct )
+
+router.route('/editSingleProduct').post( editSingleProduct )
+
 router.route("/productPage").post( productPage )
 
 router.route("/catigory").post(catigory)
@@ -67,39 +73,6 @@ router.route('/search').post( searchFunc )
 router.route('/inventory').get( inventory )
 
 
+
+
 module.exports = router;
-
-
-//productPage
-// router.post("/productPage",);
-
-// catigories of products
-// router.post("/catigory", catigory);
-
-
-//add to cart
-// router.post("/addToCart", addToCart);
-
-// Cart
-// router.get("/cart", cart);
-
-// router.post('/removeFromCart', removeFromCart);
-
-// router.get('/checkOut', checkOut);
-
-//Personal Profile
-// router.get("/profile", profile)
-
-
-// router.post('/search', searchFunc)
-
-// router.get('/statics',statics)
-
-// Add Pyament
-// router.post("/addPayment",function(req,res){
-//     User.updateOne({_id:signedUser._id},{ $push:{payments:{}} })
-// })
-
-// remove payment
-
-// Edit payment

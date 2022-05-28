@@ -1,11 +1,11 @@
-<%- include("header.ejs") -%>
+<%- include("partials/header.ejs") -%>
     <link rel="stylesheet" href="css/MainCssFiles.css">
     <link rel="stylesheet" href="/css/customStyle.css">
 </head>
 
 <body id="body-pd">
     <!-- Side bar -->
-    <%- include("navigation_bar.ejs") -%>
+    <%- include("partials/navigation_bar.ejs") -%>
 
     <h1 class="inventory_header">Total Cash</h1>
     <h1 class="smallBox mb-5 " style="margin: auto;"><%= cash %></h1>
@@ -23,19 +23,24 @@
             <% var counter = 0%>
             <% products.forEach(product => { %>
                 <% counter++ %>
-                <tr>
-                    <th scope="row"><%= counter %></th>
-                    <td><%= product.name %></td>
-                    <td><%= product.pieces_available %></td>
-                    <td><%= product.price %></td>
-                </tr>
+                <form action="/editProduct" method="post" id="<%= product._id %>">
+                    <tr>
+                        <th scope="row">
+                            <input type="hidden" name="id" value="<%= product._id %>">
+                            <a href="#" onclick="$('#<%= product._id %>').submit()"><%= counter %></a>
+                        </th>
+                        <td><%= product.name %></td>
+                        <td><%= product.pieces_available %></td>
+                        <td><%= product.price %></td>
+                    </tr>
+                </form>
             <% }) %>
             </tbody>
         </table>
     </div>
     
     
-    <%- include("footer.ejs") -%>
+    <%- include("partials/footer.ejs") -%>
     <script type='text/Javascript' src="searching.js"></script>
 </body>
 

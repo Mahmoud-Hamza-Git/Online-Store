@@ -1,12 +1,12 @@
-<%- include("header.ejs") -%>
+<%- include("partials/header.ejs") -%>
 <link rel="stylesheet" href="css/MainCssFiles.css">
 <!-- <link rel="stylesheet" href="css/HomePage.css"> -->
 <link rel="stylesheet" href="css/customStyle.css">
 </head>
 
 <body id="body-pd">
-    <%- include("navigation_bar.ejs") -%>
-    <%- include("carousel.ejs") -%>
+    <%- include("partials/navigation_bar.ejs") -%>
+    <%- include("partials/carousel.ejs") -%>
     
     <!-- main content of the page -->
     <div class="main_container">
@@ -33,11 +33,11 @@
                             <h1>
                                 <%= product.price %> $
                             </h1>
-                            <form action="/addToCart" method="post" id="<%= product._id %>2">
+                            <form action="/productPage" method="post" id="<%= product._id %>2">
                                 <a onclick="$('#<%= product._id %>2').submit()" class="pricing-button btn btn-lg btn-success w-100" type="button">ADD TO CART</a>
-                                <input type="hidden" name="number" value="1">
-                                <input type="hidden" name="page" value="main">
-                                <input type="hidden" name="id" value="<%= product._id %>">
+                                <!-- <input type="hidden" name="number" value="1">
+                                <input type="hidden" name="page" value="main"> -->
+                                <input type="hidden" name="productId" value="<%= product._id %>">
                             </form>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
 
 
 
-    <%- include("footer.ejs") -%>
+    <%- include("partials/footer.ejs") -%>
     <script type='text/Javascript' src="searching.js"></script>
 </body>
 
